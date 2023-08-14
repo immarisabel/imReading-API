@@ -175,8 +175,9 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    - `isbn`: International Standard Book Number for the book. (Type: String)
    - `thumbnailUrl`: url to the book's cover (Type: String)
    - `page`: the number of pages in a book (Type: int)
-   - `shelves`: the categories it belongs to (Type: List<String>)
-   - `tags`: anything you want to add as part of the experience to later find them back but not necessarily shelving.  (Type: List<String>)
+   - `reading`: this is the object which will store the reading data: status, dates, pages, bookmarks, quotes logs, moods, etc. (Type: Reading)
+   - `shelves`: the categories it belongs to  (Type: List<Shelf>)
+   - `tags`: anything you want to add as part of the experience to later find them back but not necessarily shelving.  (Type: List<Tag>)
   
    **4.1.3 Example**
  
@@ -198,9 +199,21 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
        private String isbn;
        private String thumbnailUrl;
        private int page;
-       private List<String> shelves;
-       private List<String> tags;
-   }
+
+       @OneToOne(mappedBy = "book")
+       private Reading reading;
+   
+       @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+       @JoinTable(
+               name = "shelved_books",
+               joinColumns = @JoinColumn(name = "books_id"),
+               inverseJoinColumns = @JoinColumn(name = "shelves_id"))
+       private Set<ShelvesEntity> shelves = new HashSet<>();
+   
+       @OneToMany(mappedBy = "bookId", cascade = CascadeType.ALL, orphanRemoval = true)
+       private List<LogEntity> logs = new ArrayList<>();
+
+}
 
  ```
    
