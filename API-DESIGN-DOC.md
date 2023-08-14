@@ -77,13 +77,70 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    - DNF : Do not finish books
    - logs : journal entries
 
-### 3. API Overview
-   2.1 API Name
-   2.2 API Description
-   2.3 Base URL
-   2.4 Authentication and Authorization
-   2.5 Versioning Strategy
+### 2. API Overview
+   #### 2.1 API Name
+   imReadingAPI
+   
+   #### 2.2 API Description
+   provides the ability to set up a reading micro-blog to keep track of the reading experience
+   
+   #### 2.3 Base URL
+   ```url
+   https://imreading.marisabel.nl/v1/
+   ```
+   
+   #### 2.4 Authentication and Authorization
 
+   Our API utilizes API keys for authentication and authorization purposes. This ensures that only authorized clients can access the API endpoints and perform actions based on their granted permissions.
+
+   **Authentication**:
+      
+   To authenticate with our API, clients are required to include their unique API key in the request headers. The API key serves as a credential to verify the identity of the client making the request. Without a valid API key, access to the API will be denied.
+
+   Clients should include the API key in the Authorization header of the HTTP request. Here's an example of how the header might look:
+
+   ```vbnet
+   Authorization: API-Key YOUR_API_KEY_HERE
+   ```
+
+   **Authorization**:
+
+   Once authenticated, the API relies on role-based authorization to determine what actions a client is allowed to perform. Each client is assigned a specific role that defines the level of access they have within the API.
+
+   Currently, our API supports the following user roles:
+
+      **Reader**: Basic access to read resources. Client will be using this for public display of data.
+      **Writer**: Full access to all resources, including read and write operations. Admin access will be granted for back end operations only. 
+      
+      By keeping these 2 roles separated, we make sure data is not accidentally corrupted by the browser.
+
+
+   #### 2.5 Versioning Strategy
+
+   As I work on this personal project, I understand the significance of versioning to ensure a smooth experience for users while allowing room for improvements. My versioning strategy ensures that the API remains compatible with existing integrations even as I make updates.
+   
+   **Versioning Format:**
+ 
+   I've chosen a versioning format in the URL to make it clear which version of the API you're interacting with. The version number is included as a segment in the URL path. So, the base URL for the API includes the version number like this:
+   
+   ```url
+   https://imreading.marisabel.nl/api/v1/
+   ```
+
+   **Versioning Changes:**
+   
+   My goal is to maintain backward compatibility whenever feasible. This means that minor enhancements and updates within a version won't disrupt existing integrations. However, as the project evolves, there might be instances where changes could potentially affect compatibility.
+
+   In such scenarios, I'll create a new version of the API. Significant changes that might not be backward compatible will lead to a new version number. For instance, if I introduce new endpoints, make substantial changes to the response structure, or modify behaviors that could impact existing integrations, I'll increment the version number in the URL.
+   
+   **Handling Deprecated Versions:**
+   
+    When a new version of the API is introduced, the previous version(s) will still be accessible during a transition period. I'll provide adequate notice and documentation to assist users in transitioning to the latest version. 
+   
+   **Example:**
+   
+   Let's say you've been using version 1 of the API, and I release version 2. You'll be able to access version 1 at `https://imreading.marisabel.nl/api/v1/` for a designated time while transitioning to version 2, available at `https://imreading.marisabel.nl/api/v2/`.
+   
 ### 4. Endpoints
    3.1 [Endpoint Name]
       3.1.1 Description
