@@ -90,7 +90,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    #### 2.3 Base URL
    
    ```url
-   https://imreading.marisabel.nl/v1/
+   https://imreading.marisabel.nl/api/v1/
    ```
    
    #### 2.4 Authentication and Authorization
@@ -145,7 +145,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    
    Let's say you've been using version 1 of the API, and I release version 2. You'll be able to access version 1 at `https://imreading.marisabel.nl/api/v1/` for a designated time while transitioning to version 2, available at `https://imreading.marisabel.nl/api/v2/`.
    
-### 4. Endpoints
+### 3. Endpoints
    3.1 [Endpoint Name]
       3.1.1 Description
       3.1.2 Request URL
@@ -157,32 +157,76 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
       3.1.8 Response Codes
       3.1.9 Response Examples
 
-   [Repeat for each endpoint]
 
-### 5. Data Models
+
+### 4. Data Models
+
+#### 4.1 Book
+
+   **4.1.1 Description**
+      
+      The "Book" entity represents the metadata about a book.
+      
+   **4.1.2 Properties**
+
+   - `id`: Unique identifier for the book. (Type: Long)
+   - `title`: Title of the book. (Type: String)
+   - `author`: Author of the book. (Type: String)
+   - `isbn`: International Standard Book Number for the book. (Type: String)
+   - `thumbnailUrl`: url to the book's cover (Type: String)
+   - `page`: the number of pages in a book (Type: int)
+   - `shelves`: the categories it belongs to (Type: List<String>)
+   - `tags`: anything you want to add as part of the experience to later find them back but not necessarily shelving.  (Type: List<String>)
+  
+   **4.1.3 Example**
+ 
+   ```java
+
+   @Getter
+   @Setter
+   @ToString
+   @AllArgsConstructor
+   @NoArgsConstructor
+   @EqualsAndHashCode
+   @Entity
+     @Table(name = "books")
+       @Id
+       @GeneratedValue(strategy = GenerationType.IDENTITY)
+       private int id;
+       private String title;
+       private String author;
+       private String isbn;
+       private String thumbnailUrl;
+       private int page;
+       private List<String> shelves;
+       private List<String> tags;
+   }
+
+ ```
+   
+
    4.1 [Model Name]
       4.1.1 Description
       4.1.2 Properties
       4.1.3 Example
 
-   [Repeat for each data model]
 
-### 6. Error Handling
+### 5. Error Handling
    5.1 Error Response Format
    5.2 Common Error Codes
    5.3 Error Code Examples
 
-### 7. Rate Limiting
+### 6. Rate Limiting
    6.1 Rate Limiting Strategy
    6.2 Rate Limit Headers
 
-### 8. Security
+### 7. Security
    7.1 Authentication
    7.2 Authorization
    7.3 API Keys
    7.4 OAuth Integration
 
-### 9. Best Practices
+### 8. Best Practices
    8.1 Naming Conventions
    8.2 Request and Response Formats
    8.3 Pagination
@@ -190,18 +234,18 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    8.5 Error Handling
    8.6 Versioning
 
-1### 0. Sample Requests and Responses
+#### 9. Sample Requests and Responses
    9.1 [Endpoint Name]
       9.1.1 Sample Request
       9.1.2 Sample Response
 
    [Repeat for each endpoint]
 
-### 11. Change Log
+### 10. Change Log
     [Version Number] - [Date]
     - Description of changes made in this version.
 
-### 12. Conclusion
+### 11. Conclusion
     Summarize the key points of the document and reiterate its importance.
 
 
