@@ -78,13 +78,17 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    - logs : journal entries
 
 ### 2. API Overview
+
    #### 2.1 API Name
+   
    imReadingAPI
    
    #### 2.2 API Description
+   
    provides the ability to set up a reading micro-blog to keep track of the reading experience
    
    #### 2.3 Base URL
+   
    ```url
    https://imreading.marisabel.nl/v1/
    ```
@@ -109,10 +113,10 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 
    Currently, our API supports the following user roles:
 
-      **Reader**: Basic access to read resources. Client will be using this for public display of data.
-      **Writer**: Full access to all resources, including read and write operations. Admin access will be granted for back end operations only. 
+   - **Reader**: Basic access to read resources. Client will be using this for public display of data.
+   - **Writer**: Full access to all resources, including read and write operations. Admin access will be granted for back end operations only. 
       
-      By keeping these 2 roles separated, we make sure data is not accidentally corrupted by the browser.
+   By keeping these 2 roles separated, we make sure data is not accidentally corrupted by the browser.
 
 
    #### 2.5 Versioning Strategy
@@ -135,7 +139,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    
    **Handling Deprecated Versions:**
    
-    When a new version of the API is introduced, the previous version(s) will still be accessible during a transition period. I'll provide adequate notice and documentation to assist users in transitioning to the latest version. 
+   When a new version of the API is introduced, the previous version(s) will still be accessible during a transition period. I'll provide adequate notice and documentation to assist users in transitioning to the latest version. 
    
    **Example:**
    
