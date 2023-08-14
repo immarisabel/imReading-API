@@ -178,6 +178,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    - `reading`: this is the object which will store the reading data: status, dates, pages, bookmarks, quotes logs, moods, etc. (Type: Reading)
    - `shelves`: the categories it belongs to  (Type: List<Shelf>)
    - `tags`: anything you want to add as part of the experience to later find them back but not necessarily shelving.  (Type: List<Tag>)
+   - `logs`: the object for storing the reading logs
   
    **4.1.3 Example**
  
@@ -201,7 +202,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
        private int page;
 
        @OneToOne(mappedBy = "book")
-       private Reading reading;
+       private ReadingData readingData;
    
        @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
        @JoinTable(
@@ -211,12 +212,39 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
        private Set<ShelvesEntity> shelves = new HashSet<>();
    
        @OneToMany(mappedBy = "bookId", cascade = CascadeType.ALL, orphanRemoval = true)
-       private List<LogEntity> logs = new ArrayList<>();
+       private List<LogEntity> logs = new ArrayList<>(); // TO MOVE TO READING OBJECT
 
 }
 
  ```
-   
+
+---
+  
+** 👉 WORKING HERE:
+ 
+ WIP Data Model Objects: 
+   - ReadingData
+   - - bookid
+     - date started
+     - date finished
+     - current page
+     - status
+     - rating
+     - logs obj
+   - Logs
+   - - id
+     - date
+     - page
+     - content
+     - mood
+   - Shelves
+   - - id
+     - shelf name
+   - Tags
+   - - id
+     - tag name**
+    
+   ---
 
    4.1 [Model Name]
       4.1.1 Description
