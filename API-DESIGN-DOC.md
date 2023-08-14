@@ -58,7 +58,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    - Implementing user authentication using API keys.
    - Ensuring secure access to user-specific data.
 
-   **The following functionalities are out of scope for this API design document:**
+   #### The following functionalities are out of scope for this API design document:
 
    - Social sharing features.
    - E-commerce features (purchasing books).
@@ -77,14 +77,14 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    - DNF : Do not finish books
    - logs : journal entries
 
-3. API Overview
+### 3. API Overview
    2.1 API Name
    2.2 API Description
    2.3 Base URL
    2.4 Authentication and Authorization
    2.5 Versioning Strategy
 
-4. Endpoints
+### 4. Endpoints
    3.1 [Endpoint Name]
       3.1.1 Description
       3.1.2 Request URL
@@ -98,7 +98,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 
    [Repeat for each endpoint]
 
-5. Data Models
+### 5. Data Models
    4.1 [Model Name]
       4.1.1 Description
       4.1.2 Properties
@@ -106,22 +106,22 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 
    [Repeat for each data model]
 
-6. Error Handling
+### 6. Error Handling
    5.1 Error Response Format
    5.2 Common Error Codes
    5.3 Error Code Examples
 
-7. Rate Limiting
+### 7. Rate Limiting
    6.1 Rate Limiting Strategy
    6.2 Rate Limit Headers
 
-8. Security
+### 8. Security
    7.1 Authentication
    7.2 Authorization
    7.3 API Keys
    7.4 OAuth Integration
 
-9. Best Practices
+### 9. Best Practices
    8.1 Naming Conventions
    8.2 Request and Response Formats
    8.3 Pagination
@@ -129,20 +129,18 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    8.5 Error Handling
    8.6 Versioning
 
-10. Sample Requests and Responses
+1### 0. Sample Requests and Responses
    9.1 [Endpoint Name]
       9.1.1 Sample Request
       9.1.2 Sample Response
 
    [Repeat for each endpoint]
 
-11. Change Log
+### 11. Change Log
     [Version Number] - [Date]
     - Description of changes made in this version.
 
-12. Conclusion
+### 12. Conclusion
     Summarize the key points of the document and reiterate its importance.
 
-Appendix A: Glossary
-Appendix B: References
 
