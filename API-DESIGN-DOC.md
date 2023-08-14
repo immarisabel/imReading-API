@@ -9,19 +9,73 @@ Author: Marisabel Munoz
 Email: projects@marisabel.nl
 ```
 
-1. Introduction
+### 1. Introduction
    
-   1.1 Purpose
+   #### 1.1 Purpose
 
    Ever since I begun to read I have been looking for ways to track my books. I have used journals, blogs and apps. Also social media. I never quite stuck anywhere until I begun writing updates on my GoodReads account. I realized what I've been missing. Appart from tracking books, something most apps can do nowadays, I wnat to log my experience.
 My thoughts as I read, not after I finish. Yes, a final review is nice. But I enjoy the process, my reactions, my thoughts and ideas floating from the reflection of the page. I guess that is why I love the present tense of "I am", it means I am doing it on the moment. I did not read and forgot about it. I am reading it and savoring each moment.
 
-   This app is an attempt to keep me present in the moment, present in just being, on the reading journey. Not wanting to just finish fast so I can rate and add another counted book to my list. My goal, to gather the experience of reading through a simple micro-blog dedicated to books.
+   This app is an attempt to keep me present in the moment, present in just being, on the reading journey. Not wanting to just finish fast so I can rate and add another counted book to my list. My goal, to gather the experience of reading through a simple micro-blog dedicated to books. This document is my way to organize my ideas in order to create this API in the most efficient way, so I can use it with any frontend language. (Original idea was implemented in Spring Boot Web App)
 
-   1.2 Scope
+   #### 1.2 Scope   
+
+   The scope of this API design document covers the following functionalities and components of the **imReading** app:
+
+   ##### Book Management:
+
+   - Adding books to the user's reading list.
+   - Retrieving details of books, such as title, author, genre, and cover image.
+   - Marking books as read/unread.
+   - Removing books from the reading list.
+   - Categorize books in shelves
+
+   ##### Journal Entries:
+
+   - Creating journal entries for books the user has read, organized per date and page.
+   - Retrieving journal entries, including date, book details, and user reflections.
+   - Editing and deleting journal entries.
+   - Adding enjoyment level and mood on the logs/entries.
+
+   ##### Discovering Books:
+
+   - Use Google Books API to find all the book's metadata
+   - Recomendation on what to read next
+   - Book randomizer from the TBR list for when you don't know what to read next
+     
+   ##### Reading Statistics:
+
+   - Providing reading progress statistics for each book.
+   - Displaying the user's reading history and trends.
+   - - per year
+     - lifetime
+     - per genre
+     - per amount of logs
+     - enjoyment levels and moods
+     
+   ##### API Security:
+
+   - Implementing user authentication using API keys.
+   - Ensuring secure access to user-specific data.
+
+   **The following functionalities are out of scope for this API design document:**
+
+   - Social sharing features.
+   - E-commerce features (purchasing books).
+   - Third-party integrations (e.g., connecting to external book databases).
+   - User interface details (app screens, layouts, designs).
    
-   1.3 Audience
-   1.4 Definitions, Acronyms, and Abbreviations
+   #### 1.3 Audience
+   
+   - myself, who else? And maybe my kids. And friends. And who knows later on.
+     
+   #### 1.4 Definitions, Acronyms, and Abbreviations
+
+   - TBR : To be read
+   - Reading : books in progress
+   - Read : books finished
+   - DNF : Do not finish books
+   - logs : journal entries
 
 3. API Overview
    2.1 API Name
