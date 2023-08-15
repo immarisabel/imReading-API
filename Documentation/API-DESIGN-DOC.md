@@ -145,7 +145,11 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
    
    Let's say you've been using version 1 of the API, and I release version 2. You'll be able to access version 1 at `https://imreading.marisabel.nl/api/v1/` for a designated time while transitioning to version 2, available at `https://imreading.marisabel.nl/api/v2/`.
    
+   
 ### 3. Endpoints
+
+>[!WARNING]
+>These are not final.
 
 | Endpoint Name             | Description                 | Request URL                | HTTP Method | Request Headers | Request Parameters | Request Body | Response Body | Response Codes | Response Examples |
 |---------------------------|-----------------------------|----------------------------|-------------|-----------------|-------------------|--------------|---------------|----------------|------------------|
@@ -181,8 +185,8 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 | Delete Tag by ID           | Delete a tag by ID           | `DELETE /tags/{id}`        | `DELETE`    |                 | ID                |              |               | 204, 404       |                  |
 
 
-> [!NOTE]
-> template for later on to document each endpoint:
+>[!NOTE]
+>template for later on to document each endpoint:
 >    3.1 [Endpoint Name]
 >    3.1.1 Description
 >     3.1.2 Request URL
