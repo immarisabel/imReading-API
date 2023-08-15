@@ -167,49 +167,33 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 
 ![](https://github.com/immarisabel/imReading-books-tracker/blob/main/Documentation/books.png.png?raw=true)
 
+For details about the fields see the [DBDocs.io page
+](https://dbdocs.io/marisabelmunoz24/imReading-database-design).
+
 #### 4.1 Book
 
    **4.1.1 Description**
       
       The "Book" entity represents the metadata about a book.
       
-   **4.1.2 Properties**
-
-   - `id`: Unique identifier for the book. (Type: Long)
-   - `title`: Title of the book. (Type: String)
-   - `author`: Author of the book. (Type: String)
-   - `isbn`: International Standard Book Number for the book. (Type: String)
-   - `thumbnailUrl`: url to the book's cover (Type: String)
-   - `page`: the number of pages in a book (Type: int)
-   - `reading`: this is the object which will store the reading data: status, dates, pages, bookmarks, quotes logs, moods, etc. (Type: Reading)
-   - `shelves`: the categories it belongs to  (Type: List<Shelf>)
-   - `tags`: anything you want to add as part of the experience to later find them back but not necessarily shelving.  (Type: List<Tag>)
-   - `logs`: the object for storing the reading logs
-  
-   **4.1.3 Example**
+   **4.1.2 Example**
  
    ```java
 
-   @Getter
-   @Setter
-   @ToString
-   @AllArgsConstructor
-   @NoArgsConstructor
-   @EqualsAndHashCode
    @Entity
      @Table(name = "books")
        @Id
-       @GeneratedValue(strategy = GenerationType.IDENTITY)
-       private int id;
-       private String title;
-       private String author;
        private String isbn;
+       @NotNull
+       private String title;
+       @NotNull
+       private String author;
+       @NotNull
+       private int pages;
        private String thumbnailUrl;
-       private int page;
-
-       @OneToOne(mappedBy = "book")
-       private ReadingData readingData;
    
+   // SHELVES
+
        @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
        @JoinTable(
                name = "shelved_books",
@@ -217,45 +201,71 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
                inverseJoinColumns = @JoinColumn(name = "shelves_id"))
        private Set<ShelvesEntity> shelves = new HashSet<>();
    
-       @OneToMany(mappedBy = "bookId", cascade = CascadeType.ALL, orphanRemoval = true)
-       private List<LogEntity> logs = new ArrayList<>(); // TO MOVE TO READING OBJECT
-
 }
 
  ```
 
----
-  
-** 👉 WORKING HERE:
- 
- WIP Data Model Objects: 
-   - ReadingData
-   - - bookid
-     - date started
-     - date finished
-     - current page
-     - status
-     - rating
-     - logs obj
-   - Logs
-   - - id
-     - date
-     - page
-     - content
-     - mood
-   - Shelves
-   - - id
-     - shelf name
-   - Tags
-   - - id
-     - tag name**
-    
-   ---
+#### 4.2 Reading_Data
 
-   4.1 [Model Name]
-      4.1.1 Description
-      4.1.2 Properties
-      4.1.3 Example
+   **4.2.1 Description**
+      
+      The "Reading Data" entity represents the metadata about the reading process. Not all books will contain this data. Every Reading Data needs to contain a ISBN book.
+      
+   **4.2.2 Example**
+
+```java
+ @Entity
+     @Table(name = "reading_data")
+       @Id
+       @GeneratedValue (strategy = GenerationType.IDENTITY)
+       private int id;
+       @NotNull
+       private String booksIsbn;
+       private Date startedDate;
+       private Date finishedDate;
+       private String status;
+       private int currentPage;
+       private int rating;
+       private boolean favorite;
+}
+```
+
+#### 4.3 Shelves
+
+   **4.3.1 Description**
+      
+      The "Shelves" entity represents the classification of the book according to the reader's preferences.
+      
+   **4.3.2 Example**
+```java
+ @Entity
+     @Table(name = "shelves")
+       @Id
+       @GeneratedValue (strategy = GenerationType.IDENTITY)
+       private int id;
+       @NotNull
+       private String name;
+}
+```
+#### 4.4 Tags
+
+   **4.4.1 Description**
+      
+      The "Tags" entity represents the sub-classification of the book according to the reader's preferences. These are to be used for experience meassurement, NOT classification of books. Though the user is free to use them as such, this won't reflect their experience on the statistics.
+      
+   **4.4.2 Example**
+```java
+ @Entity
+     @Table(name = "tags")
+       @Id
+       @GeneratedValue (strategy = GenerationType.IDENTITY)
+       private int id;
+       @NotNull
+       private String name;
+}
+```
+
+
 
 
 ### 5. Error Handling
