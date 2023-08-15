@@ -165,7 +165,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 
 **password**: ee;?<UGsR5n
 
-![](https://github.com/immarisabel/imReading-books-tracker/blob/main/Documentation/books.png)
+![](https://github.com/immarisabel/imReading-books-tracker/blob/main/Documentation/books.png.png)
 
 #### 4.1 Book
 
