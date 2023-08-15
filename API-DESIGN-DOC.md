@@ -161,6 +161,9 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 
 ### 4. Data Models
 
+[https://dbdiagram.io/d/64db387002bd1c4a5ecad614
+](https://dbdiagram.io/d/64db387002bd1c4a5ecad614)
+
 #### 4.1 Book
 
    **4.1.1 Description**
