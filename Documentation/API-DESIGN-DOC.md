@@ -149,7 +149,7 @@ My thoughts as I read, not after I finish. Yes, a final review is nice. But I en
 ### 3. Endpoints
 
 >[!WARNING]
->These are not final.
+>These are not final. I will update them as I build the API.
 
 | Endpoint Name             | Description                 | Request URL                | HTTP Method | Request Headers | Request Parameters | Request Body | Response Body | Response Codes | Response Examples |
 |---------------------------|-----------------------------|----------------------------|-------------|-----------------|-------------------|--------------|---------------|----------------|------------------|
