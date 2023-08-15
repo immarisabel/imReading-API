@@ -15,6 +15,9 @@ This document is for me to track links and guides which have useful material, te
   - DTO along with Model and Entity classes in order to encapsulate data. DTO ONLY for what we need to use.
   - create an API contract for security, if it does not match, it will stop you from progressing
   - Centralization: `AuthorizationPolicy.canDeleteTask(task,user)` <- simple idea to keep code clean
+  - Traditional Web Session: JSESSIONID=... - Cookies Java Sessions - Tomcat Webapp Runner - Redish Cache (login state)
+  - oauth
+  - JSON web token
 
 ## Spring
 
