@@ -344,15 +344,59 @@ For details about the fields see the [DBDocs.io page
 }
 ```
 
+### 5. Response Codes
+
+#### Standard Errors
+
+| HTTP Status Code | Description                            | Example Response Body                                       |
+|------------------|----------------------------------------|-------------------------------------------------------------|
+| 200              | OK                                     | `{ "message": "Request successful" }`                       |
+| 201              | Created                                | `{ "id": 123, "name": "New Item" }`                         |
+| 204              | No Content                             |                                                             |
+| 400              | Bad Request                            | `{ "error": "Invalid input" }`                             |
+| 401              | Unauthorized                           | `{ "error": "Authentication required" }`                   |
+| 403              | Forbidden                              | `{ "error": "Permission denied" }`                         |
+| 404              | Not Found                              | `{ "error": "Resource not found" }`                        |
+| 422              | Unprocessable Entity                   | `{ "error": "Validation failed" }`                         |
+| 500              | Internal Server Error                  | `{ "error": "Internal server error" }`                     |
+
+#### Book Errors
+
+| Error Code | Description                            | Example Response Body                                       |
+|------------|----------------------------------------|-------------------------------------------------------------|
+| 601        | No Book Found                          | `{ "error": "No book found with the provided ISBN" }`      |
+| 602        | Invalid ISBN                           | `{ "error": "Invalid ISBN format" }`                       |
+
+#### Log Errors
+
+| Error Code | Description                            | Example Response Body                                       |
+|------------|----------------------------------------|-------------------------------------------------------------|
+| 603        | Duplicate Entry                        | `{ "error": "Log for this book and date already exists" }`|
+| 604        | Missing Required Fields                | `{ "error": "Missing required fields in log data" }`       |
+| 605        | Book Already Marked as Read            | `{ "error": "This book is already marked as read" }`       |
+| 606        | Invalid Date Format                    | `{ "error": "Invalid date format, please use YYYY-MM-DD" }`|
+| 607        | Log Not Found                          | `{ "error": "Reading log not found with the given ID" }`   |
 
 
+#### Shelves Errors (7XX)
+
+| Error Code | Description                                  | Example Response Body                                          |
+|------------|----------------------------------------------|----------------------------------------------------------------|
+| 701        | Shelf Not Found                           | `{ "error": "Shelf not found with the provided ID" }`        |
+| 702        | Invalid Shelf Name                       | `{ "error": "Invalid shelf name format" }`                   |
+| 703        | Duplicate Shelf                           | `{ "error": "A shelf with the same name already exists" }`   |
+
+#### Reading Data Errors (8XX)
+
+| Error Code | Description                                  | Example Response Body                                       |
+|------------|----------------------------------------------|-------------------------------------------------------------|
+| 801        | Duplicate Entry                        | `{ "error": "Log for this book and date already exists" }`  |
+| 802        | Missing Required Fields                | `{ "error": "Missing required fields in log data" }`       |
+| 803        | Book Already Marked as Read        | `{ "error": "This book is already marked as read" }`       |
+| 804        | Invalid Date Format                    | `{ "error": "Invalid date format, please use YYYY-MM-DD" }`|
+| 805        | Log Not Found    
 
 
-
-### 5. Error Handling
-   5.1 Error Response Format
-   5.2 Common Error Codes
-   5.3 Error Code Examples
 
 ### 6. Rate Limiting
    6.1 Rate Limiting Strategy
