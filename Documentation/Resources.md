@@ -17,7 +17,8 @@ This document is for me to track links and guides which have useful material, te
   - Centralization: `AuthorizationPolicy.canDeleteTask(task,user)` <- simple idea to keep code clean
   - Traditional Web Session: JSESSIONID=... - Cookies Java Sessions - Tomcat Webapp Runner - Redish Cache (login state)
   - oauth
-  - JSON web token
+  - JSON web token - RFC 7519 - problems and fixing/recomendations - lots of issues - 7 ways to avoid JWT pitfals
+  - 
 
 ## Spring
 
