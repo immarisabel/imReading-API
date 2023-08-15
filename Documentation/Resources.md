@@ -14,6 +14,7 @@ This document is for me to track links and guides which have useful material, te
 - [Getting API security right - Philippe De Ryck - NDC London 2023](https://www.youtube.com/watch?v=7UBm8QFTaq0)
   - DTO along with Model and Entity classes in order to encapsulate data. DTO ONLY for what we need to use.
   - create an API contract for security, if it does not match, it will stop you from progressing
+  - AuthorizationPolicy.canDeleteTask(task,user) <- simple idea to keep code clean
 
 ## Spring
 
