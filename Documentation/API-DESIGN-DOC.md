@@ -265,6 +265,31 @@ For details about the fields see the [DBDocs.io page
 }
 ```
 
+#### 4.5 Logs
+
+   **4.5.1 Description**
+      
+      The "Logs" entity represents the written experience of the reading process. This can be quotes, notes, thoughts and more.
+      
+   **4.5.2 Example**
+```java
+ @Entity
+     @Table(name = "logs")
+       @Id
+       @GeneratedValue (strategy = GenerationType.IDENTITY)
+       private int id;
+       @NotNull
+       private String books_isbn;
+       private Date date;
+       @Column(columnDefinition = "TEXT")
+       private String content
+       private String mood;
+       private List<Tags> tags;
+
+\\ NEED TO ADD RELATIONSHIP HERE
+}
+```
+
 
 
 
