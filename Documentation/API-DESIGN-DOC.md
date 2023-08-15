@@ -394,40 +394,70 @@ For details about the fields see the [DBDocs.io page
 | 802        | Missing Required Fields                | `{ "error": "Missing required fields in log data" }`       |
 | 803        | Book Already Marked as Read        | `{ "error": "This book is already marked as read" }`       |
 | 804        | Invalid Date Format                    | `{ "error": "Invalid date format, please use YYYY-MM-DD" }`|
-| 805        | Log Not Found    
+| 805        | Log Not Found                           | `{ "error": "Reading log not found with the given ID" }`   |
 
 
+### 6. Security
 
-### 6. Rate Limiting
-   6.1 Rate Limiting Strategy
-   6.2 Rate Limit Headers
+In this section, we cover the various aspects of securing access to the API and ensuring that only authorized users can interact with the resources.
 
-### 7. Security
-   7.1 Authentication
-   7.2 Authorization
-   7.3 API Keys
-   7.4 OAuth Integration
+#### 6.1 Authentication
 
-### 8. Best Practices
-   8.1 Naming Conventions
-   8.2 Request and Response Formats
-   8.3 Pagination
-   8.4 Filtering and Sorting
-   8.5 Error Handling
-   8.6 Versioning
+Authentication is the process of verifying the identity of a client making a request to the API. It ensures that only legitimate users can access the resources. We use **Token-based Authentication** for our API.
 
-#### 9. Sample Requests and Responses
-   9.1 [Endpoint Name]
-      9.1.1 Sample Request
-      9.1.2 Sample Response
+To authenticate a request, clients must include an `Authorization` header with a bearer token in the format: `Bearer <token>`. Tokens can be obtained by registering an account on our platform and generating an authentication token through the user settings.
 
-   [Repeat for each endpoint]
+#### 6.2 Authorization
 
-### 10. Change Log
-    [Version Number] - [Date]
-    - Description of changes made in this version.
+Authorization determines the permissions and actions a user can perform once they're authenticated. Our API implements a **Role-Based Access Control (RBAC)** system.
+
+Each user is assigned a role (e.g., user, admin) that defines their level of access. The endpoints and actions accessible to a user depend on their role. Make sure to include the appropriate role in the request to access specific resources.
+
+#### 6.3 API Keys
+
+API keys are used to identify the calling application or user and provide a level of security when making requests to the API. While API keys are less secure than tokens, they are suitable for certain use cases.
+
+To include an API key in your request, add an `api_key` parameter to the query string or include it in the request headers under the `X-API-Key` field.
+
+#### 6.4 OAuth Integration
+
+We support OAuth 2.0 for third-party application integration and user authentication. OAuth allows applications to securely access user data without exposing their credentials.
+
+To integrate with our API using OAuth, you'll need to register your application and obtain a client ID and secret. Once authorized by the user, your application will receive an access token, which you can use to make authorized requests on behalf of the user.
+
+By providing multiple authentication and authorization options, we ensure that you can choose the method that best suits your application's needs while maintaining the security of your data.
+
+### 7. Best Practices
+
+As I pursue the creation of a robust and user-friendly API for reading logs and book tracking, I've incorporated the following best practices to enhance the consistency, usability, and maintainability of the system.
+
+#### 7.1 Naming Conventions
+
+I believe that using consistent naming conventions is important for easy understanding and clear code. I stick to a camelCase naming style for endpoints, resources, query parameters, and request/response fields. This makes sure that the different parts of the API are easy to understand and follow industry norms.
+
+#### 7.2 Request and Response Formats
+
+I've kept the request and response formats uniform, which makes it easier for clients to integrate with the API. I've chosen to use the JSON format for both requests and responses. This simplifies how data is managed and ensures compatibility across different platforms.
+
+#### 7.3 Pagination
+
+When I work with large sets of data, I use pagination to ensure smooth performance and responsiveness. For instance, when fetching potentially lengthy lists like book records, I split them into manageable pages to avoid overwhelming clients with too much information. I've included pagination details in the response headers, so clients know how to navigate through these larger result sets.
+
+#### 7.4 Filtering and Sorting
+
+To make data retrieval more efficient, the API lets clients filter and sort data. Clients can specify criteria and sorting preferences using query parameters. This helps users narrow down results and organize data as they prefer.
+
+#### 7.5 Error Handling
+
+Maintaining a seamless user experience relies on robust error handling. The API uses clear and standard error responses, including proper HTTP status codes and detailed error messages. This helps clients easily spot issues and troubleshoot, leading to quick problem resolution.
+
+#### 7.6 Versioning
+
+Versioning is crucial for keeping the API compatible and handling changes as it evolves. We handle versioning by updating the URL path. As needed, new API versions will be introduced, while keeping older versions available. This ensures a smooth transition for clients.
+
+By adhering to these practices, my aim is to provide an API that's functional, efficient, well-structured, user-friendly, and adaptable to diverse user needs.
 
 ### 11. Conclusion
-    Summarize the key points of the document and reiterate its importance.
 
+This document is presently under development, representing the foundation from which I will embark on refining my API. Notably, Sections 6 and 8 will demand particular attention, requiring adjustments throughout the API's evolution. Given my primary objective of personal utilization, I am approaching this development with the cognizance that it will extend its utility to others, much like the WordPress model—facilitating individual installation and tailored configuration. This two-fold strategy highlights my dedication to developing an API that addresses my individual requirements while also simulating real-world application scenarios, thereby facilitating my learning process.
 
