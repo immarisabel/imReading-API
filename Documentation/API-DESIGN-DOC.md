@@ -13,10 +13,13 @@ Email: projects@marisabel.nl
    
    #### 1.1 Purpose
 
-   Ever since I begun to read I have been looking for ways to track my books. I have used journals, blogs and apps. Also social media. I never quite stuck anywhere until I begun writing updates on my GoodReads account. I realized what I've been missing. Appart from tracking books, something most apps can do nowadays, I wnat to log my experience.
-My thoughts as I read, not after I finish. Yes, a final review is nice. But I enjoy the process, my reactions, my thoughts and ideas floating from the reflection of the page. I guess that is why I love the present tense of "I am", it means I am doing it on the moment. I did not read and forgot about it. I am reading it and savoring each moment.
+   Since I embarked on my reading journey, I've been on the hunt for methods to track my books. I've experimented with journals, blogs, apps, and even dabbled in the realm of social media. Yet, I never found a solid fit until I started updating my Goodreads account. It was then that I realized what had been missing all along. Beyond simply cataloging books—an ability most modern apps possess—I've yearned to document my experience. I want to capture my thoughts as I read, not just after the last page is turned.
 
-   This app is an attempt to keep me present in the moment, present in just being, on the reading journey. Not wanting to just finish fast so I can rate and add another counted book to my list. My goal, to gather the experience of reading through a simple micro-blog dedicated to books. This document is my way to organize my ideas in order to create this API in the most efficient way, so I can use it with any frontend language. (Original idea was implemented in Spring Boot Web App)
+   Certainly, crafting a final review holds its charm. But my true delight resides in the process itself—the raw reactions, thoughts, and ideas that emerge from the dance between my mind and the page. Perhaps this is why the present tense, "I am," resonates with me; it signifies the act unfolding in the moment. No more reading and moving on; instead, I read and relish each fragment of time.
+
+   This app is my endeavor to remain anchored in the now, to be wholly present in the act of reading. It's my way of refraining from the rush to reach the last page just to notch up another title on the list. My aspiration is to capture the essence of reading through a humble micro-blog dedicated solely to books.
+
+   This document represents my attempt to structure my thoughts, a blueprint to craft an API that can seamlessly integrate with any frontend language. (The original concept was realized through a Spring Boot Web App.) The aim is efficiency—to bring my vision to life while enabling me to cherish the unfolding journey of reading.
 
    #### 1.2 Scope   
 
