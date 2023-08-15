@@ -193,13 +193,8 @@ For details about the fields see the [DBDocs.io page
        private String thumbnailUrl;
    
    // SHELVES
-
-       @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-       @JoinTable(
-               name = "shelved_books",
-               joinColumns = @JoinColumn(name = "books_id"),
-               inverseJoinColumns = @JoinColumn(name = "shelves_id"))
-       private Set<ShelvesEntity> shelves = new HashSet<>();
+       @ManyToMany(mappedBy = "books")
+       private List<Shelves> shelf;
    
 }
 
@@ -220,12 +215,16 @@ For details about the fields see the [DBDocs.io page
        @GeneratedValue (strategy = GenerationType.IDENTITY)
        private int id;
        @NotNull
-       private String booksIsbn;
+       @ManyToOne
+       @JoinColumn(name = "books_isbn", referencedColumnName = "isbn")
+       private Books book;
        private Date startedDate;
        private Date finishedDate;
+       @NotNull
        private String status;
        private int currentPage;
        private int rating;
+       @NotNull
        private boolean favorite;
 }
 ```
@@ -245,6 +244,12 @@ For details about the fields see the [DBDocs.io page
        private int id;
        @NotNull
        private String name;
+       @ManyToMany
+       @JoinTable(
+        name = "shelved_books",
+        joinColumns = @JoinColumn(name = "shelves_shelf_id"),
+        inverseJoinColumns = @JoinColumn(name = "books_isbn"))
+       private List<Books> books;
 }
 ```
 #### 4.4 Tags
@@ -279,16 +284,26 @@ For details about the fields see the [DBDocs.io page
        @GeneratedValue (strategy = GenerationType.IDENTITY)
        private int id;
        @NotNull
-       private String books_isbn;
+       @ManyToOne
+       @JoinColumn(name = "books_isbn", referencedColumnName = "isbn")
+       private Books book;
+       @NotNull
+       @Temporal(TemporalType.TIMESTAMP)
        private Date date;
        @Column(columnDefinition = "TEXT")
        private String content
        private String mood;
+       @ManyToMany
+       @JoinTable(name = "logs_tags",
+            joinColumns = @JoinColumn(name = "logs_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_id"))
        private List<Tags> tags;
 
-\\ NEED TO ADD RELATIONSHIP HERE
+
 }
 ```
+
+
 
 
 
