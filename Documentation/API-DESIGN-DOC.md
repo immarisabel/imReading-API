@@ -32,6 +32,7 @@ Email: projects@marisabel.nl
    - Marking books as read/unread.
    - Removing books from the reading list.
    - Categorize books in shelves
+   - Rating books after reading
 
    ##### Journal Entries:
 
@@ -39,6 +40,7 @@ Email: projects@marisabel.nl
    - Retrieving journal entries, including date, book details, and user reflections.
    - Editing and deleting journal entries.
    - Adding enjoyment level and mood on the logs/entries.
+   - Calculating percentage of reading according to pages
 
    ##### Discovering Books:
 
@@ -55,6 +57,7 @@ Email: projects@marisabel.nl
      - per genre
      - per amount of logs
      - enjoyment levels and moods
+     - total pages read per (month, year, week)
      
    ##### API Security:
 
@@ -70,7 +73,9 @@ Email: projects@marisabel.nl
    
    #### 1.3 Audience
    
-   - myself, who else? And maybe my kids. And friends. And who knows later on.
+   - Primarily, the document caters to my personal use.
+   - Additionally, it serves as a resource for my children as they embark on their reading endeavors.
+   - Lastly, it accommodates hypothetical users, allowing me to engage with a practical, real-world context for practice.
      
    #### 1.4 Definitions, Acronyms, and Abbreviations
 
