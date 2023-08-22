@@ -1,7 +1,5 @@
 # Compiled class file
 *.class
-src/main/resources/secrets.properties
-src/main/resources/application.properties
 
 # Log file
 *.log
@@ -20,6 +18,7 @@ src/main/resources/application.properties
 *.zip
 *.tar.gz
 *.rar
+*.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
