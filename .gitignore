@@ -1,5 +1,7 @@
 # Compiled class file
 *.class
+src/main/resources/secrets.properties
+src/main/resources/application.properties
 
 # Log file
 *.log
