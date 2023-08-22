@@ -8,7 +8,7 @@
  *
  */
 
-package nl.marisabel.imReadingAPI.searchApi;
+package nl.marisabel.imReadingAPI.googleSearchApi;
 
 
 

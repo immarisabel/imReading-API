@@ -8,7 +8,7 @@
  *
  */
 
-package nl.marisabel.imReadingAPI.searchApi;
+package nl.marisabel.imReadingAPI.googleSearchApi;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,9 +32,6 @@ public class GoogleBooksApiService {
 
  // Generate url with ISBN and key
  public String getApiUri(String query) throws IOException {
-
-
-  System.out.println(apiKey);
 
   return "https://www.googleapis.com/books/v1/volumes?q=" + query + "&download=epub&key=" + apiKey + "&maxResults=20";
 
