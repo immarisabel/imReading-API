@@ -1,3 +1,10 @@
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
 package nl.marisabel.imReadingAPI.books;
 
 import org.springframework.stereotype.Service;
@@ -49,8 +56,9 @@ public class BooksServiceImplementation implements BooksService {
  }
 
  @Override
- public void deleteBook(String isbn) {
+ public boolean deleteBook(String isbn) {
   booksRepository.deleteById(isbn);
+  return false;
  }
 
  private BooksEntity convertDtoToEntity(BooksDTO dto) {

@@ -1,3 +1,10 @@
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
 package nl.marisabel.imReadingAPI.books;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +22,7 @@ public interface BooksService {
 
  BooksDTO updateBook(String isbn, BooksDTO updatedBooksDTO);
 
- void deleteBook(String isbn);
+ boolean deleteBook(String isbn);
 }
 
 
