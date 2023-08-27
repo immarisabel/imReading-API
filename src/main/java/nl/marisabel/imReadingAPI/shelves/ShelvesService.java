@@ -22,5 +22,9 @@ public interface ShelvesService {
  ShelvesDTO updateShelf(Long id, ShelvesDTO updateShelf);
 
  boolean deleteShelf(Long id);
+
+ public boolean isShelfNameDuplicate(String shelfName);
+
+ ShelvesDTO getShelfByName(String shelfName);
 }
 

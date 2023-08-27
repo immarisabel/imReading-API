@@ -85,4 +85,31 @@ public class ShelvesServiceImplementation implements ShelvesService {
           .map(this::convertEntityToDto)
           .collect(Collectors.toList());
  }
+
+ public boolean isShelfNameDuplicate(String shelfName) {
+  ShelvesDTO existingShelf = getShelfByName(shelfName);
+  return existingShelf != null;
+ }
+
+ public ShelvesDTO convertEntityToDTO(ShelvesEntity entity) {
+  ShelvesDTO dto = new ShelvesDTO();
+  dto.setId(entity.getId());
+  dto.setName(entity.getName());
+  return dto;
+ }
+
+
+ @Override
+ public ShelvesDTO getShelfByName(String name) {
+  ShelvesEntity shelfEntity = shelvesRepository.findByName(name);
+
+  if (shelfEntity != null) {
+   return convertEntityToDTO(shelfEntity);
+  }
+
+  return null;
+ }
+
+
+
 }
