@@ -7,13 +7,13 @@ import java.util.List;
 
 @Service
 public interface ShelvesService {
- ShelvesEntity createShelf(ShelvesEntity shelf);
+ ShelvesDTO createShelf(ShelvesDTO shelf);
 
- ShelvesEntity getShelfById(Long id);
+ ShelvesDTO getShelfById(Long id);
 
- List<ShelvesEntity> getAllShelves();
+ List<ShelvesDTO> getAllShelves();
 
- ShelvesEntity updateShelf(Long id, ShelvesEntity updateShelf);
+ ShelvesDTO updateShelf(Long id, ShelvesDTO updateShelf);
 
  void deleteShelf(Long id);
 }

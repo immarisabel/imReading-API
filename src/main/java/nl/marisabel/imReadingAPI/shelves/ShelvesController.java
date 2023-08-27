@@ -22,22 +22,22 @@ public class ShelvesController {
   * @return Response 200
   */
  @PostMapping
- public ShelvesEntity createShelf(@RequestBody ShelvesEntity shelf) {
+ public ShelvesDTO createShelf(@RequestBody ShelvesDTO shelf) {
   return shelvesService.createShelf(shelf);
  }
 
  @GetMapping("/{id}")
- public ShelvesEntity getShelfById(@PathVariable Long id) {
+ public ShelvesDTO getShelfById(@PathVariable Long id) {
   return shelvesService.getShelfById(id);
  }
 
  @GetMapping
- public List<ShelvesEntity> getAllShelves() {
+ public List<ShelvesDTO> getAllShelves() {
   return shelvesService.getAllShelves();
  }
 
  @PutMapping("/{id}")
- public ShelvesEntity updateShelf(@PathVariable Long id, @RequestBody ShelvesEntity updatedShelf) {
+ public ShelvesDTO updateShelf(@PathVariable Long id, @RequestBody ShelvesDTO updatedShelf) {
   return shelvesService.updateShelf(id, updatedShelf);
  }
 
