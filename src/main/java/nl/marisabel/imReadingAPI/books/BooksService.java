@@ -7,13 +7,13 @@ import java.util.List;
 @Service
 public interface BooksService {
 
- public BookDTO createBook(BookDTO bookDTO);
+ public BooksDTO createBook(BooksDTO booksDTO);
 
- BookDTO getBookByIsbn(String isbn);
+ BooksDTO getBookByIsbn(String isbn);
 
- List<BookDTO> getAllBooks();
+ List<BooksDTO> getAllBooks();
 
- BookDTO updateBook(String isbn, BookDTO updatedBookDTO);
+ BooksDTO updateBook(String isbn, BooksDTO updatedBooksDTO);
 
  void deleteBook(String isbn);
 }

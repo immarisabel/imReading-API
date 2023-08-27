@@ -15,14 +15,14 @@ public class BooksServiceImplementation implements BooksService {
  }
 
  @Override
- public BookDTO createBook(BookDTO bookDTO) {
-  BooksEntity bookEntity = convertDtoToEntity(bookDTO);
+ public BooksDTO createBook(BooksDTO booksDTO) {
+  BooksEntity bookEntity = convertDtoToEntity(booksDTO);
   BooksEntity savedEntity = booksRepository.save(bookEntity);
   return convertEntityToDto(savedEntity);
  }
 
  @Override
- public BookDTO getBookByIsbn(String isbn) {
+ public BooksDTO getBookByIsbn(String isbn) {
   BooksEntity entity = booksRepository.findById(isbn).orElse(null);
   if (entity != null) {
    return convertEntityToDto(entity);
@@ -31,15 +31,15 @@ public class BooksServiceImplementation implements BooksService {
  }
 
  @Override
- public List<BookDTO> getAllBooks() {
+ public List<BooksDTO> getAllBooks() {
   List<BooksEntity> entityList = (List<BooksEntity>) booksRepository.findAll();
   return convertEntityListToDtoList(entityList);
  }
 
  @Override
- public BookDTO updateBook(String isbn, BookDTO updatedBookDTO) {
+ public BooksDTO updateBook(String isbn, BooksDTO updatedBooksDTO) {
   if (booksRepository.existsById(isbn)) {
-   BooksEntity updatedEntity = convertDtoToEntity(updatedBookDTO);
+   BooksEntity updatedEntity = convertDtoToEntity(updatedBooksDTO);
    updatedEntity.setIsbn(isbn); // Update the ID
 
    BooksEntity savedEntity = booksRepository.save(updatedEntity);
@@ -53,7 +53,7 @@ public class BooksServiceImplementation implements BooksService {
   booksRepository.deleteById(isbn);
  }
 
- private BooksEntity convertDtoToEntity(BookDTO dto) {
+ private BooksEntity convertDtoToEntity(BooksDTO dto) {
   return BooksEntity.builder()
           .isbn(dto.getIsbn())
           .title(dto.getTitle())
@@ -63,8 +63,8 @@ public class BooksServiceImplementation implements BooksService {
           .build();
  }
 
- private BookDTO convertEntityToDto(BooksEntity entity) {
-  return BookDTO.builder()
+ private BooksDTO convertEntityToDto(BooksEntity entity) {
+  return BooksDTO.builder()
           .isbn(entity.getIsbn())
           .title(entity.getTitle())
           .author(entity.getAuthor())
@@ -73,7 +73,7 @@ public class BooksServiceImplementation implements BooksService {
           .build();
  }
 
- private List<BookDTO> convertEntityListToDtoList(List<BooksEntity> entityList) {
+ private List<BooksDTO> convertEntityListToDtoList(List<BooksEntity> entityList) {
   return entityList.stream()
           .map(this::convertEntityToDto)
           .collect(Collectors.toList());

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BookDTO {
+public class BooksDTO {
  private String isbn;
  private String title;
  private String author;

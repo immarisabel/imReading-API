@@ -32,24 +32,24 @@ public class BooksController {
   * @return Response 200
   */
  @PostMapping
- public ResponseEntity<BookDTO> createBook(@RequestBody BookDTO book) {
-  BookDTO createdBook = booksService.createBook(book);
+ public ResponseEntity<BooksDTO> createBook(@RequestBody BooksDTO book) {
+  BooksDTO createdBook = booksService.createBook(book);
   log.info(String.valueOf(book));
   return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
  }
 
  @GetMapping("/{isbn}")
- public BookDTO getBookById(@PathVariable String isbn) {
+ public BooksDTO getBookById(@PathVariable String isbn) {
   return booksService.getBookByIsbn(isbn);
  }
 
  @GetMapping
- public List<BookDTO> getAllBooks() {
+ public List<BooksDTO> getAllBooks() {
   return booksService.getAllBooks();
  }
 
  @PutMapping("/{isbn}")
- public BookDTO updateBook(@PathVariable String isbn, @RequestBody BookDTO updatedBook) {
+ public BooksDTO updateBook(@PathVariable String isbn, @RequestBody BooksDTO updatedBook) {
   return booksService.updateBook(isbn, updatedBook);
  }
 
