@@ -1,7 +1,12 @@
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
 package nl.marisabel.imReadingAPI.shelves;
 
-import nl.marisabel.imReadingAPI.books.BooksDTO;
-import nl.marisabel.imReadingAPI.books.BooksEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,8 +59,9 @@ public class ShelvesServiceImplementation implements ShelvesService {
 
 
  @Override
- public void deleteShelf(Long id) {
+ public boolean deleteShelf(Long id) {
   shelvesRepository.deleteById(id);
+  return false;
  }
 
 

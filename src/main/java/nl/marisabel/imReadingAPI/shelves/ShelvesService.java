@@ -1,6 +1,12 @@
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
 package nl.marisabel.imReadingAPI.shelves;
 
-import nl.marisabel.imReadingAPI.books.BooksEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +21,6 @@ public interface ShelvesService {
 
  ShelvesDTO updateShelf(Long id, ShelvesDTO updateShelf);
 
- void deleteShelf(Long id);
+ boolean deleteShelf(Long id);
 }
 
