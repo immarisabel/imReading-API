@@ -63,13 +63,6 @@ public class ShelvesServiceImplementation implements ShelvesService {
   return ShelvesEntity.builder()
           .id(dto.getId())
           .name(dto.getName())
-          .books(dto.getBooks().stream()
-                  .map(bookDto -> {
-                   BooksEntity bookEntity = new BooksEntity();
-                   bookEntity.setIsbn(bookDto.getIsbn());
-                   return bookEntity;
-                  })
-                  .collect(Collectors.toList()))
           .build();
  }
 
@@ -78,9 +71,6 @@ public class ShelvesServiceImplementation implements ShelvesService {
   return ShelvesDTO.builder()
           .id(entity.getId())
           .name(entity.getName())
-          .books(entity.getBooks().stream()
-                  .map(bookEntity -> BooksDTO.builder().isbn(bookEntity.getIsbn()).build())
-                  .collect(Collectors.toList()))
           .build();
  }
 

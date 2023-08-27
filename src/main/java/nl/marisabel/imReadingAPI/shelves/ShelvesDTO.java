@@ -15,6 +15,4 @@ import java.util.List;
 public class ShelvesDTO {
  private Long id;
  private String name;
- private List<BooksDTO> books;
-
 }
