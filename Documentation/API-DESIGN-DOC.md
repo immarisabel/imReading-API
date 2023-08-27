@@ -159,38 +159,38 @@ Email: projects@marisabel.nl
 >[!WARNING]
 >These are not final. I will update them as I build the API.
 
-| Endpoint Name             | Description                 | Request URL                | HTTP Method | Request Headers | Request Parameters | Request Body | Response Body | Response Codes | Response Examples |
-|---------------------------|-----------------------------|----------------------------|-------------|-----------------|-------------------|--------------|---------------|----------------|------------------|
-| **Books Endpoints**       |                             |                            |             |                 |                   |              |               |                |                  |
-| Create a Book             | Create a new book           | `POST /books`              | `POST`      |                 |                   | JSON         | JSON          | 201, 400       |                  |
-| Get All Books             | Get all books               | `GET /books`               | `GET`       |                 |                   |              | JSON Array    | 200            |                  |
-| Get Book by ISBN          | Get a book by ISBN          | `GET /books/{isbn}`        | `GET`       |                 | ISBN              |              | JSON Object   | 200, 404       |                  |
-| Update Book by ISBN       | Update a book by ISBN       | `PUT /books/{isbn}`        | `PUT`       |                 | ISBN              | JSON         | JSON Object   | 200, 400, 404 |                  |
-| Delete Book by ISBN       | Delete a book by ISBN       | `DELETE /books/{isbn}`     | `DELETE`    |                 | ISBN              |              |               | 204, 404       |                  |
-| **Shelves Endpoints**     |                             |                            |             |                 |                   |              |               |                |                  |
-| Create a Shelf            | Create a new shelf          | `POST /shelves`            | `POST`      |                 |                   | JSON         | JSON          | 201, 400       |                  |
-| Get All Shelves           | Get all shelves             | `GET /shelves`             | `GET`       |                 |                   |              | JSON Array    | 200            |                  |
-| Get Shelf by ID           | Get a shelf by ID           | `GET /shelves/{id}`        | `GET`       |                 | ID                |              | JSON Object   | 200, 404       |                  |
-| Update Shelf by ID        | Update a shelf by ID        | `PUT /shelves/{id}`        | `PUT`       |                 | ID                | JSON         | JSON Object   | 200, 400, 404 |                  |
-| Delete Shelf by ID        | Delete a shelf by ID        | `DELETE /shelves/{id}`     | `DELETE`    |                 | ID                |              |               | 204, 404       |                  |
-| **Reading Data Endpoints**|                             |                            |             |                 |                   |              |               |                |                  |
-| Create Reading Data Entry | Create a new reading entry  | `POST /reading-data`       | `POST`      |                 |                   | JSON         | JSON          | 201, 400       |                  |
-| Get All Reading Data       | Get all reading data entries| `GET /reading-data`        | `GET`       |                 |                   |              | JSON Array    | 200            |                  |
-| Get Reading Data Entry by ID | Get a reading entry by ID| `GET /reading-data/{id}`   | `GET`       |                 | ID                |              | JSON Object   | 200, 404       |                  |
-| Update Reading Data Entry by ID | Update a reading entry | `PUT /reading-data/{id}`   | `PUT`       |                 | ID                | JSON         | JSON Object   | 200, 400, 404 |                  |
-| Delete Reading Data Entry by ID | Delete a reading entry | `DELETE /reading-data/{id}`| `DELETE`    |                 | ID                |              |               | 204, 404       |                  |
-| **Logs Endpoints**         |                             |                            |             |                 |                   |              |               |                |                  |
-| Create a Log Entry        | Create a new log entry      | `POST /logs`               | `POST`      |                 |                   | JSON         | JSON          | 201, 400       |                  |
-| Get All Log Entries        | Get all log entries         | `GET /logs`                | `GET`       |                 |                   |              | JSON Array    | 200            |                  |
-| Get Log Entry by ID        | Get a log entry by ID       | `GET /logs/{id}`           | `GET`       |                 | ID                |              | JSON Object   | 200, 404       |                  |
-| Update Log Entry by ID     | Update a log entry by ID    | `PUT /logs/{id}`           | `PUT`       |                 | ID                | JSON         | JSON Object   | 200, 400, 404 |                  |
-| Delete Log Entry by ID     | Delete a log entry by ID    | `DELETE /logs/{id}`        | `DELETE`    |                 | ID                |              |               | 204, 404       |                  |
-| **Tags Endpoints**         |                             |                            |             |                 |                   |              |               |                |                  |
-| Create a Tag               | Create a new tag             | `POST /tags`               | `POST`      |                 |                   | JSON         | JSON          | 201, 400       |                  |
-| Get All Tags               | Get all tags                 | `GET /tags`                | `GET`       |                 |                   |              | JSON Array    | 200            |                  |
-| Get Tag by ID              | Get a tag by ID              | `GET /tags/{id}`           | `GET`       |                 | ID                |              | JSON Object   | 200, 404       |                  |
-| Update Tag by ID           | Update a tag by ID           | `PUT /tags/{id}`           | `PUT`       |                 | ID                | JSON         | JSON Object   | 200, 400, 404 |                  |
-| Delete Tag by ID           | Delete a tag by ID           | `DELETE /tags/{id}`        | `DELETE`    |                 | ID                |              |               | 204, 404       |                  |
+| Endpoint Name                   | Description                  | Request URL                 | HTTP Method | Request Headers | Request Parameters | Request Body | Response Body | Response Codes          | Response Examples |
+|---------------------------------|------------------------------|-----------------------------|-------------|-----------------|--------------------|--------------|---------------|-------------------------|-------------------|
+| **Books Endpoints**             |                              |                             |             |                 |                    |              |               |                         |                   |
+| Create a Book                   | Create a new book            | `POST /books`               | `POST`      |                 |                    | JSON         | JSON          | 201, 400                |                   |
+| Get All Books                   | Get all books                | `GET /books`                | `GET`       |                 |                    |              | JSON Array    | 200                     |                   |
+| Get Book by ISBN                | Get a book by ISBN           | `GET /books/{isbn}`         | `GET`       |                 | ISBN               |              | JSON Object   | 200, 404, 601           |                   |
+| Update Book by ISBN             | Update a book by ISBN        | `PUT /books/{isbn}`         | `PUT`       |                 | ISBN               | JSON         | JSON Object   | 200, 400, 404, 601      |                   |
+| Delete Book by ISBN             | Delete a book by ISBN        | `DELETE /books/{isbn}`      | `DELETE`    |                 | ISBN               |              |               | 204, 404, 601           |                   |
+| **Shelves Endpoints**           |                              |                             |             |                 |                    |              |               |                         |                   |
+| Create a Shelf                  | Create a new shelf           | `POST /shelves`             | `POST`      |                 |                    | JSON         | JSON          | 201, 400, 803           |                   |
+| Get All Shelves                 | Get all shelves              | `GET /shelves`              | `GET`       |                 |                    |              | JSON Array    | 200                     |                   |
+| Get Shelf by ID                 | Get a shelf by ID            | `GET /shelves/{id}`         | `GET`       |                 | ID                 |              | JSON Object   | 200, 404, 801           |                   |
+| Update Shelf by ID              | Update a shelf by ID         | `PUT /shelves/{id}`         | `PUT`       |                 | ID                 | JSON         | JSON Object   | 200, 400, 404, 801, 803 |                   |
+| Delete Shelf by ID              | Delete a shelf by ID         | `DELETE /shelves/{id}`      | `DELETE`    |                 | ID                 |              |               | 204, 404, 801           |                   |
+| **Reading Data Endpoints**      |                              |                             |             |                 |                    |              |               |                         |                   |
+| Create Reading Data Entry       | Create a new reading entry   | `POST /reading-data`        | `POST`      |                 |                    | JSON         | JSON          | 201, 400                |                   |
+| Get All Reading Data            | Get all reading data entries | `GET /reading-data`         | `GET`       |                 |                    |              | JSON Array    | 200                     |                   |
+| Get Reading Data Entry by ID    | Get a reading entry by ID    | `GET /reading-data/{id}`    | `GET`       |                 | ID                 |              | JSON Object   | 200, 404                |                   |
+| Update Reading Data Entry by ID | Update a reading entry       | `PUT /reading-data/{id}`    | `PUT`       |                 | ID                 | JSON         | JSON Object   | 200, 400, 404           |                   |
+| Delete Reading Data Entry by ID | Delete a reading entry       | `DELETE /reading-data/{id}` | `DELETE`    |                 | ID                 |              |               | 204, 404                |                   |
+| **Logs Endpoints**              |                              |                             |             |                 |                    |              |               |                         |                   |
+| Create a Log Entry              | Create a new log entry       | `POST /logs`                | `POST`      |                 |                    | JSON         | JSON          | 201, 400                |                   |
+| Get All Log Entries             | Get all log entries          | `GET /logs`                 | `GET`       |                 |                    |              | JSON Array    | 200                     |                   |
+| Get Log Entry by ID             | Get a log entry by ID        | `GET /logs/{id}`            | `GET`       |                 | ID                 |              | JSON Object   | 200, 404                |                   |
+| Update Log Entry by ID          | Update a log entry by ID     | `PUT /logs/{id}`            | `PUT`       |                 | ID                 | JSON         | JSON Object   | 200, 400, 404           |                   |
+| Delete Log Entry by ID          | Delete a log entry by ID     | `DELETE /logs/{id}`         | `DELETE`    |                 | ID                 |              |               | 204, 404                |                   |
+| **Tags Endpoints**              |                              |                             |             |                 |                    |              |               |                         |                   |
+| Create a Tag                    | Create a new tag             | `POST /tags`                | `POST`      |                 |                    | JSON         | JSON          | 201, 400                |                   |
+| Get All Tags                    | Get all tags                 | `GET /tags`                 | `GET`       |                 |                    |              | JSON Array    | 200                     |                   |
+| Get Tag by ID                   | Get a tag by ID              | `GET /tags/{id}`            | `GET`       |                 | ID                 |              | JSON Object   | 200, 404                |                   |
+| Update Tag by ID                | Update a tag by ID           | `PUT /tags/{id}`            | `PUT`       |                 | ID                 | JSON         | JSON Object   | 200, 400, 404           |                   |
+| Delete Tag by ID                | Delete a tag by ID           | `DELETE /tags/{id}`         | `DELETE`    |                 | ID                 |              |               | 204, 404                |                   |
 
 
 >[!NOTE]
@@ -365,9 +365,9 @@ For details about the fields see the [DBDocs.io page
 
 #### Book Errors
 
-| Error Code | Description                            | Example Response Body                                       |
-|------------|----------------------------------------|-------------------------------------------------------------|
-| 601        | No Book Found                          | `{ "error": "No book found with the provided ISBN" }`      |
+| Error Code | Description   | Example Response Body                                 |
+|------------|---------------|-------------------------------------------------------|
+| 601   ✔    | No Book Found | `{ "error": "No book found with the provided ISBN" }` |
 
 #### Log Errors
 
@@ -383,9 +383,9 @@ For details about the fields see the [DBDocs.io page
 
 | Error Code | Description        | Example Response Body                                      |
 |------------|--------------------|------------------------------------------------------------|
-| 801        | Shelf Not Found    | `{ "error": "Shelf not found with the provided ID" }`      |
+| 801   ✔    | Shelf Not Found    | `{ "error": "Shelf not found with the provided ID" }`      |
 | 802        | Invalid Shelf Name | `{ "error": "Invalid shelf name format" }`                 |
-| 803        | Duplicate Shelf    | `{ "error": "A shelf with the same name already exists" }` |
+| 803   ✔    | Duplicate Shelf    | `{ "error": "A shelf with the same name already exists" }` |
 
 #### Reading Data Errors (8XX)
 
