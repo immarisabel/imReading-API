@@ -1,3 +1,10 @@
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
 package nl.marisabel.imReadingAPI.books;
 
 import jakarta.persistence.*;
@@ -30,13 +37,6 @@ public class BooksEntity {
  @ToString.Exclude
  private List<ShelvesEntity> shelf;
 
- public void setShelf(List<ShelvesEntity> shelf) {
-  this.shelf = shelf;
- }
-
- public void setId(String isbn) {
-  this.isbn = isbn;
- }
 
  @Override
  public final boolean equals(Object o) {

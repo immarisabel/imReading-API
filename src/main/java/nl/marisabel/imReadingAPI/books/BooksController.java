@@ -36,13 +36,13 @@ public class BooksController {
 
  /**
   * REQUEST BODY EXAMPLE
-  * {
-  * "id": "1234567890",
-  * "title": "Sample Book Title",
-  * "author": "Sample Author",
-  * "pages": 200,
-  * "thumbnailUrl": "https://example.com/sample-thumbnail.jpg"
-  * }
+  {
+  "isbn": "1234567890",
+  "title": "Sample Book Title",
+  "author": "Sample Author",
+  "pages": 200,
+  "thumbnailUrl": "thumbnail.jpg",
+  }
   *
   * @param book
   * @return Response 200
