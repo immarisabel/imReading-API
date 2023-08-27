@@ -229,7 +229,6 @@ For details about the fields see the [DBDocs.io page
  
    ```java
 
-   @Entity
      @Table(name = "books")
        @Id
        private String isbn;
@@ -258,7 +257,6 @@ For details about the fields see the [DBDocs.io page
    **4.2.2 Example**
 
 ```java
- @Entity
      @Table(name = "reading_data")
        @Id
        @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -286,7 +284,6 @@ For details about the fields see the [DBDocs.io page
       
    **4.3.2 Example**
 ```java
- @Entity
      @Table(name = "shelves")
        @Id
        @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -309,7 +306,6 @@ For details about the fields see the [DBDocs.io page
       
    **4.4.2 Example**
 ```java
- @Entity
      @Table(name = "tags")
        @Id
        @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -327,7 +323,6 @@ For details about the fields see the [DBDocs.io page
       
    **4.5.2 Example**
 ```java
- @Entity
      @Table(name = "logs")
        @Id
        @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -373,36 +368,32 @@ For details about the fields see the [DBDocs.io page
 | Error Code | Description                            | Example Response Body                                       |
 |------------|----------------------------------------|-------------------------------------------------------------|
 | 601        | No Book Found                          | `{ "error": "No book found with the provided ISBN" }`      |
-| 602        | Invalid ISBN                           | `{ "error": "Invalid ISBN format" }`                       |
 
 #### Log Errors
 
-| Error Code | Description                            | Example Response Body                                       |
-|------------|----------------------------------------|-------------------------------------------------------------|
-| 603        | Duplicate Entry                        | `{ "error": "Log for this book and date already exists" }`|
-| 604        | Missing Required Fields                | `{ "error": "Missing required fields in log data" }`       |
-| 605        | Book Already Marked as Read            | `{ "error": "This book is already marked as read" }`       |
-| 606        | Invalid Date Format                    | `{ "error": "Invalid date format, please use YYYY-MM-DD" }`|
-| 607        | Log Not Found                          | `{ "error": "Reading log not found with the given ID" }`   |
+| Error Code | Description                 | Example Response Body                                       |
+|------------|-----------------------------|-------------------------------------------------------------|
+| 704        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`        |
+| 705        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`        |
+| 706        | Invalid Date Format         | `{ "error": "Invalid date format, please use YYYY-MM-DD" }` |
+| 707        | Log Not Found               | `{ "error": "Reading log not found with the given ID" }`    |
 
 
 #### Shelves Errors (7XX)
 
-| Error Code | Description                                  | Example Response Body                                          |
-|------------|----------------------------------------------|----------------------------------------------------------------|
-| 701        | Shelf Not Found                           | `{ "error": "Shelf not found with the provided ID" }`        |
-| 702        | Invalid Shelf Name                       | `{ "error": "Invalid shelf name format" }`                   |
-| 703        | Duplicate Shelf                           | `{ "error": "A shelf with the same name already exists" }`   |
+| Error Code | Description        | Example Response Body                                      |
+|------------|--------------------|------------------------------------------------------------|
+| 801        | Shelf Not Found    | `{ "error": "Shelf not found with the provided ID" }`      |
+| 802        | Invalid Shelf Name | `{ "error": "Invalid shelf name format" }`                 |
+| 803        | Duplicate Shelf    | `{ "error": "A shelf with the same name already exists" }` |
 
 #### Reading Data Errors (8XX)
 
-| Error Code | Description                                  | Example Response Body                                       |
-|------------|----------------------------------------------|-------------------------------------------------------------|
-| 801        | Duplicate Entry                        | `{ "error": "Log for this book and date already exists" }`  |
-| 802        | Missing Required Fields                | `{ "error": "Missing required fields in log data" }`       |
-| 803        | Book Already Marked as Read        | `{ "error": "This book is already marked as read" }`       |
-| 804        | Invalid Date Format                    | `{ "error": "Invalid date format, please use YYYY-MM-DD" }`|
-| 805        | Log Not Found                           | `{ "error": "Reading log not found with the given ID" }`   |
+| Error Code | Description                 | Example Response Body                                       |
+|------------|-----------------------------|-------------------------------------------------------------|
+| 902        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`        |
+| 903        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`        |
+| 904        | Invalid Date Format         | `{ "error": "Invalid date format, please use YYYY-MM-DD" }` |
 
 
 ### 6. Security
