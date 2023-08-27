@@ -30,7 +30,7 @@ public class BooksController {
 
  @ExceptionHandler(BookNotFoundException.class)
  public ResponseEntity<CustomErrorResponse> handleBookNotFoundException(BookNotFoundException ex) {
-  CustomErrorResponse errorResponse = new CustomErrorResponse(601, "No book found with the provided ISBN");
+  CustomErrorResponse errorResponse = new CustomErrorResponse(601, ex.getMessage());
   return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
  }
 

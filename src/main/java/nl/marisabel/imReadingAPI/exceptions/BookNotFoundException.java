@@ -9,7 +9,7 @@ package nl.marisabel.imReadingAPI.exceptions;
 
 public class BookNotFoundException extends RuntimeException {
  public BookNotFoundException(String isbn) {
-  super("No book found with the ISBN: " + isbn);
+  super("No book found with the provided ISBN: " + isbn);
  }
 }
 
