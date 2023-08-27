@@ -1,6 +1,15 @@
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
 package nl.marisabel.imReadingAPI.shelves;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +27,13 @@ public class ShelvesController {
   * "name": "Sample Shelf"
   * }
   *
-  * @param shelf
+  * @param shelf JSON Request Body
   * @return Response 200
   */
  @PostMapping
- public ShelvesDTO createShelf(@RequestBody ShelvesDTO shelf) {
-  return shelvesService.createShelf(shelf);
+ public ResponseEntity<ShelvesDTO> createShelf(@RequestBody ShelvesDTO shelf) {
+  ShelvesDTO createdShelf = shelvesService.createShelf(shelf);
+  return new ResponseEntity<>(createdShelf, HttpStatus.CREATED);
  }
 
  @GetMapping("/{id}")
