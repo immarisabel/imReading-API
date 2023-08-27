@@ -22,7 +22,7 @@ public class ShelvesServiceImplementation implements ShelvesService {
 
  @Override
  public ShelvesEntity getShelfById(Long id) {
-  return shelvesRepository.findById(Math.toIntExact(id)).orElse(null);
+  return shelvesRepository.findById(id).orElse(null);
  }
 
  @Override
@@ -32,7 +32,7 @@ public class ShelvesServiceImplementation implements ShelvesService {
 
  @Override
  public ShelvesEntity updateShelf(Long id, ShelvesEntity updatedShelf) {
-  if (shelvesRepository.existsById(Math.toIntExact(id))) {
+  if (shelvesRepository.existsById(id)) {
    updatedShelf.setId(id);
    return shelvesRepository.save(updatedShelf);
   }
@@ -41,6 +41,6 @@ public class ShelvesServiceImplementation implements ShelvesService {
 
  @Override
  public void deleteShelf(Long id) {
-  shelvesRepository.deleteById(Math.toIntExact(id));
+  shelvesRepository.deleteById(id);
  }
 }
