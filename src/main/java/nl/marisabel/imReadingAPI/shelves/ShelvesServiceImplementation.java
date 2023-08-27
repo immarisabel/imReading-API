@@ -33,7 +33,7 @@ public class ShelvesServiceImplementation implements ShelvesService {
  @Override
  public ShelvesEntity updateShelf(Long id, ShelvesEntity updatedShelf) {
   if (shelvesRepository.existsById(Math.toIntExact(id))) {
-   updatedShelf.setId(id); // Make sure the ID is set for the updated entity
+   updatedShelf.setId(id);
    return shelvesRepository.save(updatedShelf);
   }
   return null;
