@@ -1,0 +1,207 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-08-27T16:57:44.211Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.6",
+  "resources": [
+    {
+      "_id": "req_a777459bf8f74774b9118f0065941a6c",
+      "parentId": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "modified": 1693143937981,
+      "created": 1693143558175,
+      "url": "http://localhost:8080/api/v1/books/123444444444",
+      "name": "delete a book",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "Insomnia/2023.5.6"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1693143558175,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "parentId": null,
+      "modified": 1693128701249,
+      "created": 1693128701249,
+      "name": "books",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_f317e3784b174176800ff687a4eb8de2",
+      "parentId": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "modified": 1693143548529,
+      "created": 1693143487665,
+      "url": "http://localhost:8080/api/v1/books/123333344444",
+      "name": "update a book",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"isbn\": \"123333344444\",\n\t\"title\": \"Sample Book Title\",\n\t\"author\": \"Sample Author\",\n\t\"pages\": 200,\n\t\"thumbnailUrl\": \"updated-1.jpg\",\n\t\"shelf\": []\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Insomnia/2023.5.6"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1693143487666,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c5a5aa1d0e2b4d4c9cdde3c865ede717",
+      "parentId": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "modified": 1693141158640,
+      "created": 1693141121879,
+      "url": "http://localhost:8080/api/v1/books/123333344444",
+      "name": "get a book",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "Insomnia/2023.5.6"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1693141121879,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_46f5a20651494ee3b08d0b415035208c",
+      "parentId": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "modified": 1693141097734,
+      "created": 1693129974232,
+      "url": "http://localhost:8080/api/v1/books",
+      "name": "get all books",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "Insomnia/2023.5.6"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1693129974232,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ab8cb28ef6c04a5ca7a20384620e8e7f",
+      "parentId": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "modified": 1693143945203,
+      "created": 1693128711565,
+      "url": "http://localhost:8080/api/v1/books",
+      "name": "add a book",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"isbn\": \"123333344444\",\n\t\"title\": \"Sample Book Title\",\n\t\"author\": \"Sample Author\",\n\t\"pages\": 200,\n\t\"thumbnailUrl\": \"https://example.com/sample-thumbnail.jpg\",\n\t\"shelf\": []\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Insomnia/2023.5.6"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1693128711565,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_a7f13195dfe3d986d91331724fa5e9c40abe70ff",
+      "parentId": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "modified": 1693144432059,
+      "created": 1693128701253,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": {},
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1693128701253,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_a7f13195dfe3d986d91331724fa5e9c40abe70ff",
+      "parentId": "wrk_f9caeca5275042e5b530d30bd60bccd2",
+      "modified": 1693128701257,
+      "created": 1693128701257,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "env_3af09b19a4d44b84a8e2777e0d0e447a",
+      "parentId": "env_a7f13195dfe3d986d91331724fa5e9c40abe70ff",
+      "modified": 1693146352879,
+      "created": 1693146352879,
+      "name": "New Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1693146352879,
+      "_type": "environment"
+    }
+  ]
+}
