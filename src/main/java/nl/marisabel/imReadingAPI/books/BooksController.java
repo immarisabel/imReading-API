@@ -7,6 +7,7 @@
 
 package nl.marisabel.imReadingAPI.books;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.CustomErrorResponse;
@@ -24,6 +25,7 @@ import java.util.List;
 @RestController
 @Log
 @RequestMapping(value = {"${url.mapping.v1}/books"})
+@Tag(name = "book service", description = "manage the books on the database")
 public class BooksController {
 
  @Autowired

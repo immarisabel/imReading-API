@@ -31,6 +31,7 @@ public class BooksEntity {
  private String author;
  private int pages;
  private String thumbnailUrl;
+ private String selfLink;
 
  // SHELVES
  @ManyToMany(mappedBy = "books")

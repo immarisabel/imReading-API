@@ -1,16 +1,14 @@
 /*
- *
- *  * imReading API
- *  * Copyright (c) 2023 Marisabel Munoz
- *  * This project is licensed under the terms of the MIT License.
- *  * For more information, please see the https://opensource.org/license/mit/.
- *
- *
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
  */
 
 package nl.marisabel.imReadingAPI.googleSearchApi;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +24,14 @@ import java.util.List;
 @Log
 @RestController
 @RequestMapping(value = { "${url.mapping.v1}" })
+@Tag(name = "google books search service", description = "search for books and returns the body of a title to use on our book service")
 public class SearchResultController {
 
  @Autowired
  GoogleBooksApiService apiService;
 
-
-
  @GetMapping(value = "/search")
- public ResponseEntity<List<BookDto>> getSearchResults(@RequestParam String query) throws IOException {
+ public ResponseEntity<List<SearchBooksDto>> getSearchResults(@RequestParam String query) throws IOException {
 
   String url = apiService.getApiUri(query);
   String jsonResult = String.valueOf(apiService.getBookDetailsFromResponse(url));
@@ -42,7 +39,7 @@ public class SearchResultController {
   ObjectMapper objectMapper = new ObjectMapper();
   JsonNode rootNode = objectMapper.readTree(jsonResult);
 
-  List<BookDto> books = new ArrayList<>();
+  List<SearchBooksDto> books = new ArrayList<>();
 
   JsonNode itemsNode = rootNode.path("items");
 
@@ -58,12 +55,12 @@ public class SearchResultController {
     String selfLink = itemNode.path("selfLink").asText();
 
 
-    BookDto bookDto = new BookDto();
+    SearchBooksDto bookDto = new SearchBooksDto();
     bookDto.setTitle(title);
     bookDto.setAuthor(author);
     bookDto.setIsbn(identifier);
-    bookDto.setThumbnail(thumbnail);
-    bookDto.setPageCount(pageCount);
+    bookDto.setThumbnailUrl(thumbnail);
+    bookDto.setPages(pageCount);
     bookDto.setSelfLink(selfLink);
 
     books.add(bookDto);

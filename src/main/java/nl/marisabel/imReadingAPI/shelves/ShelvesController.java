@@ -7,6 +7,7 @@
 
 package nl.marisabel.imReadingAPI.shelves;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.CustomErrorResponse;
 import nl.marisabel.imReadingAPI.exceptions.DuplicateShelfException;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = {"${url.mapping.v1}/shelves"})
+@Tag(name = "shelves service", description = "manage the shelves on the database")
 public class ShelvesController {
 
  @Autowired

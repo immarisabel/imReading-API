@@ -1,3 +1,10 @@
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
 package nl.marisabel.imReadingAPI;
 
 import org.springframework.boot.SpringApplication;
@@ -17,3 +24,26 @@ public class ImReadingApiApplication {
 	}
 }
 
+
+// TODO : add a api body for books under a category : /books/category/{id}
+// TODO : add the shelves body to the result of search book response
+//  	in order to pass it on full to the client to insert books
+//			{
+//  "isbn": "string",
+//  "title": "string",
+//  "author": "string",
+//  "pages": 0,
+//  "thumbnailUrl": "string",
+//  "selfLink": "string",
+//  "shelves": [
+//    0
+//  ]
+//}
+// FINISH ALL CRUD ENDPOINTS
+// TODO : LOGS service
+// TODO : TAGS service
+// TODO : READING DATA service
+// START ON COMBINED ENDPOINTS
+// TODO : combination endpoints:
+//			- books/{ISBN}/reading-data
+// 		- books/{ISBN}/logs

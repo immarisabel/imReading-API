@@ -7,18 +7,23 @@
 
 package nl.marisabel.imReadingAPI.books;
 
+import nl.marisabel.imReadingAPI.shelves.ShelvesEntity;
+import nl.marisabel.imReadingAPI.shelves.ShelvesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class BooksServiceImplementation implements BooksService {
 
  private final BooksRepository booksRepository;
+ private final ShelvesRepository shelvesRepository;
 
- public BooksServiceImplementation(BooksRepository booksRepository) {
+ public BooksServiceImplementation(BooksRepository booksRepository, ShelvesRepository shelvesRepository) {
   this.booksRepository = booksRepository;
+  this.shelvesRepository = shelvesRepository;
  }
 
  @Override
@@ -62,24 +67,38 @@ public class BooksServiceImplementation implements BooksService {
  }
 
  private BooksEntity convertDtoToEntity(BooksDTO dto) {
+  List<ShelvesEntity> shelvesEntities = dto.getShelves().stream()
+          .map(shelfId -> shelvesRepository.findById(shelfId).orElse(null)) // Fetch shelves based on IDs
+          .filter(Objects::nonNull) // Remove any null shelves
+          .collect(Collectors.toList());
+
   return BooksEntity.builder()
           .isbn(dto.getIsbn())
           .title(dto.getTitle())
           .author(dto.getAuthor())
           .pages(dto.getPages())
           .thumbnailUrl(dto.getThumbnailUrl())
+          .selfLink(dto.getSelfLink())
+          .shelf(shelvesEntities)
           .build();
  }
 
  private BooksDTO convertEntityToDto(BooksEntity entity) {
+  List<Long> shelfIds = entity.getShelf().stream()
+          .map(ShelvesEntity::getId)
+          .collect(Collectors.toList());
+
   return BooksDTO.builder()
           .isbn(entity.getIsbn())
           .title(entity.getTitle())
           .author(entity.getAuthor())
           .pages(entity.getPages())
           .thumbnailUrl(entity.getThumbnailUrl())
+          .selfLink(entity.getSelfLink())
+          .shelves(shelfIds) // Set the list of shelf IDs
           .build();
  }
+
 
  private List<BooksDTO> convertEntityListToDtoList(List<BooksEntity> entityList) {
   return entityList.stream()
