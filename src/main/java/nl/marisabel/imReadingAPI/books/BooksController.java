@@ -10,6 +10,7 @@ package nl.marisabel.imReadingAPI.books;
 import lombok.extern.java.Log;
 import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.CustomErrorResponse;
+import nl.marisabel.imReadingAPI.responses.ResponseHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
@@ -80,14 +81,16 @@ public class BooksController {
   return new ResponseEntity<>(updated, HttpStatus.OK);
  }
 
+
  @DeleteMapping("/{isbn}")
  public ResponseEntity<?> deleteBook(@PathVariable String isbn) {
-  boolean deleted = booksService.deleteBook(isbn);
-
-  if (!deleted) {
+  try {
+   boolean deleted = booksService.deleteBook(isbn);
+   return ResponseHandler.generateResponse("Deleted!", HttpStatus.OK, deleted);
+  } catch (Exception e) {
    throw new BookNotFoundException(isbn);
   }
-
-  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
  }
+
+
 }
