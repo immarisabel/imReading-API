@@ -159,6 +159,8 @@ Email: projects@marisabel.nl
 >[!WARNING]
 >These are not final. I will update them as I build the API.
 
+`http://localhost:8080/swagger-ui/index.html`
+
 | Endpoint Name                   | Description                  | Request URL                 | HTTP Method | Request Headers | Request Parameters | Request Body | Response Body | Response Codes          | Response Examples |
 |---------------------------------|------------------------------|-----------------------------|-------------|-----------------|--------------------|--------------|---------------|-------------------------|-------------------|
 | **Books Endpoints**             |                              |                             |             |                 |                    |              |               |                         |                   |
