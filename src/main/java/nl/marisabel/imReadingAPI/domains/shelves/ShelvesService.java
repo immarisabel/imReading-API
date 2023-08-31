@@ -5,7 +5,7 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.shelves;
+package nl.marisabel.imReadingAPI.domains.shelves;
 
 import org.springframework.stereotype.Service;
 

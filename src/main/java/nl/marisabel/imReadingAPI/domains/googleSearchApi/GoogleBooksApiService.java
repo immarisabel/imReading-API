@@ -1,14 +1,11 @@
 /*
- *
- *  * imReading API
- *  * Copyright (c) 2023 Marisabel Munoz
- *  * This project is licensed under the terms of the MIT License.
- *  * For more information, please see the https://opensource.org/license/mit/.
- *
- *
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.googleSearchApi;
+package nl.marisabel.imReadingAPI.domains.googleSearchApi;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;

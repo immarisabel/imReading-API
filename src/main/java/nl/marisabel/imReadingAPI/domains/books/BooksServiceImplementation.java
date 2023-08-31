@@ -5,10 +5,11 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.books;
+package nl.marisabel.imReadingAPI.domains.books;
 
-import nl.marisabel.imReadingAPI.shelves.ShelvesEntity;
-import nl.marisabel.imReadingAPI.shelves.ShelvesRepository;
+import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
+import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
+import nl.marisabel.imReadingAPI.domains.shelves.ShelvesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -95,7 +96,7 @@ public class BooksServiceImplementation implements BooksService {
           .pages(entity.getPages())
           .thumbnailUrl(entity.getThumbnailUrl())
           .selfLink(entity.getSelfLink())
-          .shelves(shelfIds) // Set the list of shelf IDs
+          .shelves(shelfIds)
           .build();
  }
 

@@ -5,11 +5,12 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.books;
+package nl.marisabel.imReadingAPI.domains.books;
 
 import jakarta.persistence.*;
 import lombok.*;
-import nl.marisabel.imReadingAPI.shelves.ShelvesEntity;
+import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
+import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.List;

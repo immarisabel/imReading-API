@@ -5,26 +5,20 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.googleSearchApi;
-
+package nl.marisabel.imReadingAPI.domains.shelves;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Tag(name = "Search Results Model")
-public class SearchBooksDto {
-
- String title;
- String author;
- String isbn;
- String thumbnailUrl;
- int pages;
- String selfLink;
+@Builder
+@Tag(name = "Shelves Model")
+public class ShelvesDTO {
+ private Long id;
+ private String name;
 }
-
-

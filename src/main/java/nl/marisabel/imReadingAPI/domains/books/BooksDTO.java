@@ -5,7 +5,7 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.books;
+package nl.marisabel.imReadingAPI.domains.books;
 
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nl.marisabel.imReadingAPI.shelves.ShelvesDTO;
+import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
 
 import java.util.List;
 

@@ -5,10 +5,9 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.shelves;
+package nl.marisabel.imReadingAPI.domains.shelves;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.CustomErrorResponse;
 import nl.marisabel.imReadingAPI.exceptions.DuplicateShelfException;
 import nl.marisabel.imReadingAPI.exceptions.ShelfNotFoundException;

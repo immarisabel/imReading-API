@@ -1,15 +1,14 @@
 /*
- *
- *  * imReading API
- *  * Copyright (c) 2023 Marisabel Munoz
- *  * This project is licensed under the terms of the MIT License.
- *  * For more information, please see the https://opensource.org/license/mit/.
- *
- *
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
  */
 
 package nl.marisabel.imReadingAPI.googleSearchApi;
 
+import nl.marisabel.imReadingAPI.domains.googleSearchApi.GoogleBooksApiService;
+import nl.marisabel.imReadingAPI.domains.googleSearchApi.SearchResultController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

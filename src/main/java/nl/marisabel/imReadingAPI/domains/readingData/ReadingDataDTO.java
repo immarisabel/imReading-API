@@ -5,23 +5,29 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.shelves;
+package nl.marisabel.imReadingAPI.domains.readingData;
+
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nl.marisabel.imReadingAPI.books.BooksDTO;
+import nl.marisabel.imReadingAPI.domains.books.BooksDTO;
 
-import java.util.List;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Tag(name = "Shelves Model")
-public class ShelvesDTO {
- private Long id;
- private String name;
+@Tag(name = "Reading Data Model")
+public class ReadingDataDTO {
+ private String book_isbn;
+ private Date startedDate;
+ private Date finishedDate;
+ private String status;
+ private int currentPage;
+ private int rating;
+ private boolean favorite;
 }

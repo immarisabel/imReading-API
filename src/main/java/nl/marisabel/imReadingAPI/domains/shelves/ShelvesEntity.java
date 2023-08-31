@@ -1,9 +1,16 @@
-package nl.marisabel.imReadingAPI.shelves;
+/*
+ *  imReading API
+ * Copyright (c) 2023 Marisabel Munoz
+ * This project is licensed under the terms of the MIT License.
+ * For more information, please see the https://opensource.org/license/mit/.
+ */
+
+package nl.marisabel.imReadingAPI.domains.shelves;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import nl.marisabel.imReadingAPI.books.BooksEntity;
+import nl.marisabel.imReadingAPI.domains.books.BooksEntity;
 
 import java.util.List;
 
@@ -19,7 +26,6 @@ public class ShelvesEntity {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
  private Long id;
- @NotNull
  private String name;
  @Getter
  @ManyToMany
