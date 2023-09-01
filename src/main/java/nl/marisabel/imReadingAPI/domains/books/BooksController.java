@@ -21,6 +21,28 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+//{
+//
+//    "title": "100% Mila",
+//    "author": "Niki Smit",
+//    "isbn": "9789026139598",
+//    "thumbnailUrl": "http://books.google.com/books/content?id=_XEPCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+//    "pages": 91,
+//    "selfLink": "https://www.googleapis.com/books/v1/volumes/_XEPCgAAQBAJ",
+//  "shelves": [
+//    0
+//  ],
+//"reading_data"{
+//  "book_isbn": "string",
+//  "startedDate": "2023-09-01T05:34:56.362Z",
+//  "finishedDate": "2023-09-01T05:34:56.362Z",
+//  "status": "string",
+//  "currentPage": 0,
+//  "rating": 0,
+//  "favorite": true
+//}
+//}
 @RestController
 @Log
 @RequestMapping(value = {"${url.mapping.v1}/books"})

@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @Log
-@RequestMapping(value = {"${url.mapping.v1}/book/{isbn}/reading"})
+@RequestMapping(value = {"${url.mapping.v1}/reading/{isbn}"})
 @Tag(name = "reading data service", description = "manage the reading data for each book")
 public class ReadingDataController {
 
@@ -31,8 +31,8 @@ public class ReadingDataController {
  }
 
  @PostMapping
- public ResponseEntity<ReadingDataDTO> addReadingData(@PathVariable String isbn, @RequestBody ReadingDataDTO readingDataDTO) {
-  readingDataDTO.getBook_isbn();
+ public ResponseEntity<ReadingDataDTO> addReadingData(@RequestBody ReadingDataDTO readingDataDTO) {
+  readingDataDTO.getBookIsbn();
 
   ReadingDataDTO addedReadingData = readingDataService.addReadingDataToBook(readingDataDTO);
   if (addedReadingData != null) {
@@ -43,19 +43,17 @@ public class ReadingDataController {
   }
  }
 
- @GetMapping("/{readingDataId}")
- public ResponseEntity<ReadingDataDTO> getReadingDataById(@PathVariable String isbn, @PathVariable Long readingDataId) {
-  ReadingDataDTO readingDataDTO = readingDataService.getReadingDataById(readingDataId);
+ @GetMapping
+ public ResponseEntity<ReadingDataDTO> getAllReadingDataForABookByIsbn(@PathVariable String isbn) {
+  ReadingDataDTO readingDataDTO = readingDataService.getAllReadingDataForABook(isbn);
   if (readingDataDTO != null) {
    return new ResponseEntity<>(readingDataDTO, HttpStatus.OK);
   } else {
-   // TODO implement 601
-   // TODO implement 901 - no data found
    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
  }
 
- @PutMapping("/{readingDataId}")
+ @PutMapping
  public ResponseEntity<ReadingDataDTO> updateReadingData(@PathVariable String isbn, @PathVariable Long readingDataId, @RequestBody ReadingDataDTO updatedReadingDataDTO) {
   ReadingDataDTO updatedReadingData = readingDataService.updateReadingData(readingDataId, updatedReadingDataDTO);
   if (updatedReadingData != null) {
@@ -67,7 +65,7 @@ public class ReadingDataController {
   }
  }
 
- @DeleteMapping("/{readingDataId}")
+ @DeleteMapping
  public ResponseEntity<Void> deleteReadingData(@PathVariable String isbn, @PathVariable Long readingDataId) {
   boolean deleted = readingDataService.eraseReadingData(readingDataId);
   if (deleted) {

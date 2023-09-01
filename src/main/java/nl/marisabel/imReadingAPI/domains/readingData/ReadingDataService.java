@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ReadingDataService {
 
- public ReadingDataDTO addReadingDataToBook(ReadingDataDTO readingDataDTO);
+ ReadingDataDTO addReadingDataToBook(ReadingDataDTO readingDataDTO);
 
- ReadingDataDTO getReadingDataById(Long id);
+ ReadingDataDTO getAllReadingDataForABook(String isbn);
 
  ReadingDataDTO updateReadingData(Long id, ReadingDataDTO updatedReadingDataDTO);
 

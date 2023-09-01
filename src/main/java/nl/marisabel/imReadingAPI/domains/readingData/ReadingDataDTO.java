@@ -23,7 +23,7 @@ import java.sql.Date;
 @Builder
 @Tag(name = "Reading Data Model")
 public class ReadingDataDTO {
- private String book_isbn;
+ private String bookIsbn;
  private Date startedDate;
  private Date finishedDate;
  private String status;

@@ -9,6 +9,8 @@ package nl.marisabel.imReadingAPI.domains.readingData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,14 +31,11 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
  }
 
  @Override
- public ReadingDataDTO getReadingDataById(Long id) {
-  Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(id);
-
-  if (optionalEntity.isPresent()) {
-   ReadingDataEntity entity = optionalEntity.get();
-   return entityToDto(entity);
+ public ReadingDataDTO getAllReadingDataForABook(String isbn) {
+  ReadingDataEntity readingDataEntity = readingDataRepository.findByIsbn(isbn);
+  if (readingDataEntity != null) {
+   return entityToDto(readingDataEntity);
   } else {
-// TODO handle 601 & 901
    return null;
   }
  }
@@ -80,7 +79,7 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
 
  public ReadingDataDTO entityToDto(ReadingDataEntity entity) {
   ReadingDataDTO dto = new ReadingDataDTO();
-  dto.setBook_isbn(entity.getBook_isbn());
+  dto.setBookIsbn(entity.getBookIsbn());
   dto.setStartedDate(entity.getStartedDate());
   dto.setFinishedDate(entity.getFinishedDate());
   dto.setStatus(entity.getStatus());
@@ -92,7 +91,7 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
 
  public ReadingDataEntity dtoToEntity(ReadingDataDTO dto) {
   ReadingDataEntity entity = new ReadingDataEntity();
-  entity.setBook_isbn(dto.getBook_isbn());
+  entity.setBookIsbn(dto.getBookIsbn());
   entity.setStartedDate(dto.getStartedDate());
   entity.setFinishedDate(dto.getFinishedDate());
   entity.setStatus(dto.getStatus());
