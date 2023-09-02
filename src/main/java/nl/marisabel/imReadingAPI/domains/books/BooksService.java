@@ -7,6 +7,8 @@
 
 package nl.marisabel.imReadingAPI.domains.books;
 
+import nl.marisabel.imReadingAPI.domains.logs.LogsDTO;
+import nl.marisabel.imReadingAPI.domains.logs.LogsEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,19 @@ public interface BooksService {
  BooksDTO updateBook(String isbn, BooksDTO updatedBooksDTO);
 
  boolean deleteBook(String isbn);
+
+ private BooksDTO entityToDto(BooksEntity entity) {
+  return null;
+ }
+
+ private BooksEntity dtoToEntity(BooksDTO dto) {
+  return null;
+ }
+
+ private List<BooksDTO> convertEntityListToDtoList(List<BooksEntity> entityList) {
+  return null;
+ }
+
 }
 
 

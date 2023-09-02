@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BooksRepository extends CrudRepository<BooksEntity, String> {
+
+// ID is already ISBN, no need for query
+
 }

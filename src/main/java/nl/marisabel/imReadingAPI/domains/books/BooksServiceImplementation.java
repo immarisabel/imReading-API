@@ -29,16 +29,16 @@ public class BooksServiceImplementation implements BooksService {
 
  @Override
  public BooksDTO createBook(BooksDTO booksDTO) {
-  BooksEntity bookEntity = convertDtoToEntity(booksDTO);
+  BooksEntity bookEntity = dtoToEntity(booksDTO);
   BooksEntity savedEntity = booksRepository.save(bookEntity);
-  return convertEntityToDto(savedEntity);
+  return entityToDto(savedEntity);
  }
 
  @Override
  public BooksDTO getBookByIsbn(String isbn) {
   BooksEntity entity = booksRepository.findById(isbn).orElse(null);
   if (entity != null) {
-   return convertEntityToDto(entity);
+   return entityToDto(entity);
   }
   return null;
  }
@@ -52,11 +52,11 @@ public class BooksServiceImplementation implements BooksService {
  @Override
  public BooksDTO updateBook(String isbn, BooksDTO updatedBooksDTO) {
   if (booksRepository.existsById(isbn)) {
-   BooksEntity updatedEntity = convertDtoToEntity(updatedBooksDTO);
+   BooksEntity updatedEntity = dtoToEntity(updatedBooksDTO);
    updatedEntity.setIsbn(isbn); // Update the ID
 
    BooksEntity savedEntity = booksRepository.save(updatedEntity);
-   return convertEntityToDto(savedEntity);
+   return entityToDto(savedEntity);
   }
   return null;
  }
@@ -67,7 +67,8 @@ public class BooksServiceImplementation implements BooksService {
   return false;
  }
 
- private BooksEntity convertDtoToEntity(BooksDTO dto) {
+
+ private BooksEntity dtoToEntity(BooksDTO dto) {
   List<ShelvesEntity> shelvesEntities = dto.getShelves().stream()
           .map(shelfId -> shelvesRepository.findById(shelfId).orElse(null)) // Fetch shelves based on IDs
           .filter(Objects::nonNull) // Remove any null shelves
@@ -84,7 +85,7 @@ public class BooksServiceImplementation implements BooksService {
           .build();
  }
 
- private BooksDTO convertEntityToDto(BooksEntity entity) {
+ private BooksDTO entityToDto(BooksEntity entity) {
   List<Long> shelfIds = entity.getShelf().stream()
           .map(ShelvesEntity::getId)
           .collect(Collectors.toList());
@@ -103,7 +104,7 @@ public class BooksServiceImplementation implements BooksService {
 
  private List<BooksDTO> convertEntityListToDtoList(List<BooksEntity> entityList) {
   return entityList.stream()
-          .map(this::convertEntityToDto)
+          .map(this::entityToDto)
           .collect(Collectors.toList());
  }
 }
