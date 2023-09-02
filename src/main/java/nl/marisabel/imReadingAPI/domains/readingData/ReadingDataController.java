@@ -24,9 +24,9 @@ import java.util.List;
 @Tag(name = "reading data service", description = "manage the reading data for each book")
 public class ReadingDataController {
 
- private final ReadingDataService readingDataService;
+ private final ReadingDataServiceImplementation readingDataService;
 
- public ReadingDataController(ReadingDataService readingDataService) {
+ public ReadingDataController(ReadingDataServiceImplementation readingDataService) {
   this.readingDataService = readingDataService;
  }
 
