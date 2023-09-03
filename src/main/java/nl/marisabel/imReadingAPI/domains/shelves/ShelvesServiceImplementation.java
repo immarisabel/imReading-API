@@ -30,6 +30,21 @@ public class ShelvesServiceImplementation implements ShelvesService {
   ShelvesEntity savedEntity = shelvesRepository.save(shelvesEntity);
   return convertEntityToDto(savedEntity);
  }
+
+ // TODO never return null!
+ @Override
+ public ShelvesDTO updateShelf(Long id, ShelvesDTO updatedShelfDTO) {
+  if (shelvesRepository.existsById(id)) {
+   ShelvesEntity updatedEntity = convertDtoToEntity(updatedShelfDTO);
+   updatedEntity.setId(id);
+
+   ShelvesEntity savedEntity = shelvesRepository.save(updatedEntity);
+   return convertEntityToDto(savedEntity);
+  }
+  return null;
+ }
+
+ // TODO never return null!
  @Override
  public ShelvesDTO getShelfById(Long id) {
   ShelvesEntity entity = shelvesRepository.findById(id).orElse(null);
@@ -45,15 +60,16 @@ public class ShelvesServiceImplementation implements ShelvesService {
   return convertEntityListToDtoList(entityList);
  }
 
- @Override
- public ShelvesDTO updateShelf(Long id, ShelvesDTO updatedShelfDTO) {
-  if (shelvesRepository.existsById(id)) {
-   ShelvesEntity updatedEntity = convertDtoToEntity(updatedShelfDTO);
-   updatedEntity.setId(id);
 
-   ShelvesEntity savedEntity = shelvesRepository.save(updatedEntity);
-   return convertEntityToDto(savedEntity);
+ // TODO never return null!
+ @Override
+ public ShelvesDTO getShelfByName(String name) {
+  ShelvesEntity shelfEntity = shelvesRepository.findByName(name);
+
+  if (shelfEntity != null) {
+   return convertEntityToDto(shelfEntity);
   }
+
   return null;
  }
 
@@ -64,6 +80,8 @@ public class ShelvesServiceImplementation implements ShelvesService {
   return false;
  }
 
+
+ // Helper methods
 
  private ShelvesEntity convertDtoToEntity(ShelvesDTO dto) {
   return ShelvesEntity.builder()
@@ -86,29 +104,14 @@ public class ShelvesServiceImplementation implements ShelvesService {
           .collect(Collectors.toList());
  }
 
+ // TODO never return null!
  public boolean isShelfNameDuplicate(String shelfName) {
   ShelvesDTO existingShelf = getShelfByName(shelfName);
   return existingShelf != null;
  }
 
- public ShelvesDTO convertEntityToDTO(ShelvesEntity entity) {
-  ShelvesDTO dto = new ShelvesDTO();
-  dto.setId(entity.getId());
-  dto.setName(entity.getName());
-  return dto;
- }
 
 
- @Override
- public ShelvesDTO getShelfByName(String name) {
-  ShelvesEntity shelfEntity = shelvesRepository.findByName(name);
-
-  if (shelfEntity != null) {
-   return convertEntityToDTO(shelfEntity);
-  }
-
-  return null;
- }
 
 
 

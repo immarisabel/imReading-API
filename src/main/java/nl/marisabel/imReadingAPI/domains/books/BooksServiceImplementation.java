@@ -34,6 +34,7 @@ public class BooksServiceImplementation implements BooksService {
   return entityToDto(savedEntity);
  }
 
+ // TODO never return null!
  @Override
  public BooksDTO getBookByIsbn(String isbn) {
   BooksEntity entity = booksRepository.findById(isbn).orElse(null);
@@ -49,6 +50,7 @@ public class BooksServiceImplementation implements BooksService {
   return convertEntityListToDtoList(entityList);
  }
 
+ // TODO never return null!
  @Override
  public BooksDTO updateBook(String isbn, BooksDTO updatedBooksDTO) {
   if (booksRepository.existsById(isbn)) {
@@ -70,8 +72,8 @@ public class BooksServiceImplementation implements BooksService {
 
  private BooksEntity dtoToEntity(BooksDTO dto) {
   List<ShelvesEntity> shelvesEntities = dto.getShelves().stream()
-          .map(shelfId -> shelvesRepository.findById(shelfId).orElse(null)) // Fetch shelves based on IDs
-          .filter(Objects::nonNull) // Remove any null shelves
+          .map(shelfId -> shelvesRepository.findById(shelfId).orElse(null))
+          .filter(Objects::nonNull)
           .collect(Collectors.toList());
 
   return BooksEntity.builder()

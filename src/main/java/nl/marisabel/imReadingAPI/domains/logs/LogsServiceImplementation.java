@@ -30,7 +30,7 @@ public class LogsServiceImplementation implements LogsService {
   return entityToDto(savedEntity);
  }
 
-
+ // TODO never return null!
  @Override
  public LogsDTO getAllLogsForABook(String isbn) {
   LogsEntity logsEntity = logsRepository.findByIsbn(isbn);
@@ -41,13 +41,12 @@ public class LogsServiceImplementation implements LogsService {
   }
  }
 
+ // TODO never return null!
  @Override
  public LogsDTO updateLog(Long id, LogsDTO updatedLogsDTO) {
   Optional<LogsEntity> optionalEntity = logsRepository.findById(id);
-
   if (optionalEntity.isPresent()) {
    LogsEntity entity = optionalEntity.get();
-   // Update fields with values from updatedReadingDataDTO
    entity.setDate(updatedLogsDTO.getDate());
    entity.setPage(updatedLogsDTO.getPage());
    entity.setBookIsbn(updatedLogsDTO.getBookIsbn());
@@ -68,6 +67,7 @@ public class LogsServiceImplementation implements LogsService {
   if (optionalEntity.isPresent()) {
    LogsEntity entity = optionalEntity.get();
    logsRepository.delete(entity);
+   // TODO return confirmation of deletion
    return true;
   } else {
 // TODO handle 601 & 901

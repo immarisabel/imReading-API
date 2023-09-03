@@ -28,6 +28,7 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
   return entityToDto(savedEntity);
  }
 
+ // TODO never return null!
  @Override
  public ReadingDataDTO getAllReadingDataForABook(String isbn) {
   ReadingDataEntity readingDataEntity = readingDataRepository.findByIsbn(isbn);
@@ -55,6 +56,7 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
    ReadingDataEntity updatedEntity = readingDataRepository.save(entity);
    return entityToDto(updatedEntity);
   } else {
+   // TODO never return null!
 // TODO handle 601 & 901
    return null;
   }
@@ -67,6 +69,7 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
   if (optionalEntity.isPresent()) {
    ReadingDataEntity entity = optionalEntity.get();
    readingDataRepository.delete(entity);
+   // TODO return confirmation of deletion
    return true;
   } else {
 // TODO handle 601 & 901

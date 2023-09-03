@@ -31,6 +31,20 @@ public class TagsServiceImplementation implements TagsService {
   return convertEntityToDto(savedEntity);
  }
 
+ // TODO never return null!
+ @Override
+ public TagsDTO updateTag(Long id, TagsDTO updatedShelfDTO) {
+  if (tagsRepository.existsById(id)) {
+   TagsEntity updatedEntity = convertDtoToEntity(updatedShelfDTO);
+   updatedEntity.setId(id);
+
+   TagsEntity savedEntity = tagsRepository.save(updatedEntity);
+   return convertEntityToDto(savedEntity);
+  }
+  return null;
+ }
+
+ // TODO never return null!
  @Override
  public TagsDTO getTagById(Long id) {
   TagsEntity entity = tagsRepository.findById(id).orElse(null);
@@ -46,15 +60,17 @@ public class TagsServiceImplementation implements TagsService {
   return convertEntityListToDtoList(entityList);
  }
 
- @Override
- public TagsDTO updateTag(Long id, TagsDTO updatedShelfDTO) {
-  if (tagsRepository.existsById(id)) {
-   TagsEntity updatedEntity = convertDtoToEntity(updatedShelfDTO);
-   updatedEntity.setId(id);
 
-   TagsEntity savedEntity = tagsRepository.save(updatedEntity);
-   return convertEntityToDto(savedEntity);
+ // TODO controller tag by name /tags/{name}
+ // TODO never return null!
+ @Override
+ public TagsDTO getTagByName(String tagName) {
+  TagsEntity shelfEntity = tagsRepository.findByName(tagName);
+
+  if (shelfEntity != null) {
+   return convertEntityToDto(shelfEntity);
   }
+
   return null;
  }
 
@@ -66,11 +82,11 @@ public class TagsServiceImplementation implements TagsService {
  }
 
 
- private TagsEntity convertDtoToEntity(TagsDTO dto) {
-  return TagsEntity.builder()
-          .id(dto.getId())
-          .name(dto.getName())
-          .build();
+// Helper methods
+
+ public boolean isNameDuplicate(String tagName) {
+  TagsDTO existingShelf = getTagByName(tagName);
+  return existingShelf != null;
  }
 
 
@@ -81,35 +97,16 @@ public class TagsServiceImplementation implements TagsService {
           .build();
  }
 
+ private TagsEntity convertDtoToEntity(TagsDTO dto) {
+  return TagsEntity.builder()
+          .id(dto.getId())
+          .name(dto.getName())
+          .build();
+ }
  private List<TagsDTO> convertEntityListToDtoList(List<TagsEntity> entityList) {
   return entityList.stream()
           .map(this::convertEntityToDto)
           .collect(Collectors.toList());
  }
-
- public boolean isNameDuplicate(String tagName) {
-  TagsDTO existingShelf = getTagByName(tagName);
-  return existingShelf != null;
- }
-
- public TagsDTO convertEntityToDTO(TagsEntity entity) {
-  TagsDTO dto = new TagsDTO();
-  dto.setId(entity.getId());
-  dto.setName(entity.getName());
-  return dto;
- }
-
-
- @Override
- public TagsDTO getTagByName(String tagName) {
-  TagsEntity shelfEntity = tagsRepository.findByName(tagName);
-
-  if (shelfEntity != null) {
-   return convertEntityToDTO(shelfEntity);
-  }
-
-  return null;
- }
-
 
 }
