@@ -18,7 +18,7 @@ import java.io.IOException;
 @Log
 public class GoogleBooksApiService {
 
- private RestTemplate restTemplate;
+ private final RestTemplate restTemplate;
  private final String apiKey;
 
  public GoogleBooksApiService(RestTemplate restTemplate, @Value("${keys.gBooks}") String apiKey) {
@@ -26,8 +26,8 @@ public class GoogleBooksApiService {
   this.apiKey = apiKey;
  }
 
-
- public String getApiUri(String query) throws IOException {
+ // TODO handle errors try/catch - wrong/expired API KEY, invalid URL
+ public String getApiUri(String query) {
   return "https://www.googleapis.com/books/v1/volumes?q=" + query + "&download=epub&key=" + apiKey + "&maxResults=20";
  }
 

@@ -6,8 +6,6 @@
  */
 package nl.marisabel.imReadingAPI.domains.logs;
 
-import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataDTO;
-import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

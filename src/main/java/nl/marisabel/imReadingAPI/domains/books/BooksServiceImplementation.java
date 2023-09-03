@@ -7,7 +7,6 @@
 
 package nl.marisabel.imReadingAPI.domains.books;
 
-import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesRepository;
 import org.springframework.stereotype.Service;
