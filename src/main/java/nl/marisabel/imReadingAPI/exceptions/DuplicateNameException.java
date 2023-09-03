@@ -7,9 +7,8 @@
 
 package nl.marisabel.imReadingAPI.exceptions;
 
-public class ShelfNotFoundException extends RuntimeException {
- public ShelfNotFoundException(Long id) {
-  super("Shelf not found with the provided ID: " + id);
+public class DuplicateNameException extends RuntimeException {
+ public DuplicateNameException(String shelfName) {
+  super("A shelf with the same name already exists: " + shelfName);
  }
 }
-

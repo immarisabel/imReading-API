@@ -9,9 +9,12 @@ package nl.marisabel.imReadingAPI.domains.logs;
 
 import jakarta.persistence.*;
 import lombok.*;
+import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
+import nl.marisabel.imReadingAPI.domains.tags.TagsEntity;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,6 +34,12 @@ public class LogsEntity {
  private boolean favorite;
  @Column(columnDefinition = "TEXT")
  private String log;
+
+ // SHELVES
+ @ManyToMany(mappedBy = "logs")
+ @ToString.Exclude
+ private List<TagsEntity> tags;
+
 
  @Override
  public final int hashCode() {

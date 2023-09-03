@@ -36,10 +36,6 @@ public class ShelvesEntity {
  @ToString.Exclude
  private List<BooksEntity> books;
 
- public void setBooks(List<BooksEntity> books) {
-  this.books = books;
- }
-
  public void setId(Long id) {
   this.id = id;
  }

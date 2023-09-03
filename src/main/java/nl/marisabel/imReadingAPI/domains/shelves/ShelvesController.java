@@ -9,8 +9,8 @@ package nl.marisabel.imReadingAPI.domains.shelves;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.marisabel.imReadingAPI.exceptions.CustomErrorResponse;
-import nl.marisabel.imReadingAPI.exceptions.DuplicateShelfException;
-import nl.marisabel.imReadingAPI.exceptions.ShelfNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.DuplicateNameException;
+import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +26,14 @@ public class ShelvesController {
  @Autowired
  private ShelvesServiceImplementation shelvesService;
 
- @ExceptionHandler(ShelfNotFoundException.class)
- public ResponseEntity<CustomErrorResponse> handleBookNotFoundException(ShelfNotFoundException ex) {
+ @ExceptionHandler(IdNotFoundException.class)
+ public ResponseEntity<CustomErrorResponse> handleBookNotFoundException(IdNotFoundException ex) {
   CustomErrorResponse errorResponse = new CustomErrorResponse(801, ex.getMessage());
   return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
  }
 
- @ExceptionHandler(DuplicateShelfException.class)
- public ResponseEntity<CustomErrorResponse> handleDuplicateShelfException(DuplicateShelfException ex) {
+ @ExceptionHandler(DuplicateNameException.class)
+ public ResponseEntity<CustomErrorResponse> handleDuplicateShelfException(DuplicateNameException ex) {
   CustomErrorResponse errorResponse = new CustomErrorResponse(803, ex.getMessage());
   return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
  }
@@ -51,12 +51,12 @@ public class ShelvesController {
  public ResponseEntity<ShelvesDTO> createShelf(@RequestBody ShelvesDTO shelf) {
   try {
    if (shelvesService.isShelfNameDuplicate(shelf.getName())) {
-    throw new DuplicateShelfException(shelf.getName());
+    throw new DuplicateNameException(shelf.getName());
    }
    ShelvesDTO createdShelf = shelvesService.createShelf(shelf);
    return new ResponseEntity<>(createdShelf, HttpStatus.CREATED);
-  } catch (DuplicateShelfException ex) {
-   throw new DuplicateShelfException(shelf.getName());
+  } catch (DuplicateNameException ex) {
+   throw new DuplicateNameException(shelf.getName());
   }
  }
 
@@ -65,7 +65,7 @@ public class ShelvesController {
   ShelvesDTO shelf = shelvesService.getShelfById(id);
 
   if (shelf == null) {
-   throw new ShelfNotFoundException(id);
+   throw new IdNotFoundException(id);
   }
 
   return new ResponseEntity<>(shelf, HttpStatus.OK);
@@ -80,13 +80,13 @@ public class ShelvesController {
  @PutMapping("/{id}")
  public ResponseEntity<?> updateShelf(@PathVariable Long id, @RequestBody ShelvesDTO updatedShelf) {
   if (shelvesService.isShelfNameDuplicate(updatedShelf.getName())) {
-   throw new DuplicateShelfException(updatedShelf.getName());
+   throw new DuplicateNameException(updatedShelf.getName());
   }
 
   ShelvesDTO updated = shelvesService.updateShelf(id, updatedShelf);
 
   if (updated == null) {
-   throw new ShelfNotFoundException(id);
+   throw new IdNotFoundException(id);
   }
 
   return new ResponseEntity<>(updated, HttpStatus.OK);
@@ -98,7 +98,7 @@ public class ShelvesController {
   boolean deleted = shelvesService.deleteShelf(id);
 
   if (!deleted) {
-   throw new ShelfNotFoundException(id);
+   throw new IdNotFoundException(id);
   }
 
   return new ResponseEntity<>(HttpStatus.NO_CONTENT);
