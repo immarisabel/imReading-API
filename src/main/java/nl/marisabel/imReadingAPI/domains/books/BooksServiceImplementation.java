@@ -9,6 +9,7 @@ package nl.marisabel.imReadingAPI.domains.books;
 
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesRepository;
+import nl.marisabel.imReadingAPI.exceptions.DuplicateBookException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +29,10 @@ public class BooksServiceImplementation implements BooksService {
 
  @Override
  public BooksDTO createBook(BooksDTO booksDTO) {
+  String bookIsbn = booksDTO.getIsbn();
+  if (booksRepository.existsById(bookIsbn)) {
+   throw new DuplicateBookException(bookIsbn);
+  }
   BooksEntity bookEntity = dtoToEntity(booksDTO);
   BooksEntity savedEntity = booksRepository.save(bookEntity);
   return entityToDto(savedEntity);

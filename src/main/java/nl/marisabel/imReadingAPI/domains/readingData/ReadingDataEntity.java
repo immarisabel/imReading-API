@@ -27,6 +27,7 @@ public class ReadingDataEntity {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
  private Long id;
+ @Column(unique = true)
  private String bookIsbn;
  private Date startedDate;
  private Date finishedDate;

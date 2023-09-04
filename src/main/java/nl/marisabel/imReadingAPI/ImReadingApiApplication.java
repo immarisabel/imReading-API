@@ -39,11 +39,3 @@ public class ImReadingApiApplication {
 //    0
 //  ]
 //}
-// FINISH ALL CRUD ENDPOINTS
-// TODO : LOGS service
-// TODO : TAGS service
-// TODO : READING DATA service
-// START ON COMBINED ENDPOINTS
-// TODO : combination endpoints:
-//			- books/{ISBN}/reading-data
-// 		- books/{ISBN}/logs

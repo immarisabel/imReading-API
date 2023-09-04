@@ -10,7 +10,6 @@ package nl.marisabel.imReadingAPI.domains.books;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.CustomErrorResponse;
 import nl.marisabel.imReadingAPI.customResponse.ResponseHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,27 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-//{
-//
-//    "title": "100% Mila",
-//    "author": "Niki Smit",
-//    "isbn": "9789026139598",
-//    "thumbnailUrl": "http://books.google.com/books/content?id=_XEPCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-//    "pages": 91,
-//    "selfLink": "https://www.googleapis.com/books/v1/volumes/_XEPCgAAQBAJ",
-//  "shelves": [
-//    0
-//  ],
-//"reading_data"{
-//  "book_isbn": "string",
-//  "startedDate": "2023-09-01T05:34:56.362Z",
-//  "finishedDate": "2023-09-01T05:34:56.362Z",
-//  "status": "string",
-//  "currentPage": 0,
-//  "rating": 0,
-//  "favorite": true
-//}
-//}
 @RestController
 @Log
 @RequestMapping(value = {"${url.mapping.v1}/books"})
@@ -52,25 +30,7 @@ public class BooksController {
  @Autowired
  private BooksServiceImplementation booksService;
 
- @ExceptionHandler(BookNotFoundException.class)
- public ResponseEntity<CustomErrorResponse> handleBookNotFoundException(BookNotFoundException ex) {
-  CustomErrorResponse errorResponse = new CustomErrorResponse(601, ex.getMessage());
-  return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
- }
 
- /**
-  * REQUEST BODY EXAMPLE
-  {
-  "isbn": "1234567890",
-  "title": "Sample Book Title",
-  "author": "Sample Author",
-  "pages": 200,
-  "thumbnailUrl": "thumbnail.jpg",
-  }
-  *
-  * @param book
-  * @return Response 200
-  */
  @PostMapping
  public ResponseEntity<BooksDTO> createBook(@RequestBody BooksDTO book) {
   BooksDTO createdBook = booksService.createBook(book);

@@ -6,6 +6,11 @@
  */
 package nl.marisabel.imReadingAPI.domains.readingData;
 
+import nl.marisabel.imReadingAPI.domains.googleSearchApi.NoBookFoundException;
+import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.DataExistingCheck;
+import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.NoDataFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,37 +20,47 @@ import java.util.Optional;
 public class ReadingDataServiceImplementation implements ReadingDataService {
 
  private final ReadingDataRepository readingDataRepository;
+ private final DataExistingCheck dataExistingCheck;
 
  @Autowired
- public ReadingDataServiceImplementation(ReadingDataRepository readingDataRepository) {
+ public ReadingDataServiceImplementation(ReadingDataRepository readingDataRepository, DataExistingCheck dataExistingCheck) {
   this.readingDataRepository = readingDataRepository;
+  this.dataExistingCheck = dataExistingCheck;
  }
 
  @Override
  public ReadingDataDTO addReadingDataToBook(ReadingDataDTO readingDataDTO) {
-  ReadingDataEntity entity = dtoToEntity(readingDataDTO);
-  ReadingDataEntity savedEntity = readingDataRepository.save(entity);
-  return entityToDto(savedEntity);
+  if (dataExistingCheck.doesIsbnExistsInBooks(readingDataDTO.getBookIsbn())) {
+   ReadingDataEntity entity = dtoToEntity(readingDataDTO);
+   ReadingDataEntity savedEntity = readingDataRepository.save(entity);
+   return entityToDto(savedEntity);
+  } else {
+   throw new BookNotFoundException(readingDataDTO.getBookIsbn());
+  }
  }
 
- // TODO never return null!
  @Override
  public ReadingDataDTO getAllReadingDataForABook(String isbn) {
   ReadingDataEntity readingDataEntity = readingDataRepository.findByIsbn(isbn);
   if (readingDataEntity != null) {
    return entityToDto(readingDataEntity);
   } else {
-   return null;
+   throw new NoDataFoundException(isbn);
   }
  }
 
+ // TODO : PUT readingData puzzle: it should not allow me to modify ISBN but yes content.
+ //  If wrong ISBN inserted, it should not modify it and still insert new data to the current ISBN.
+ //  I want to handle ISBN in mult. vs ID for editing, in teh cases when I re-read a book.
+ //  So Reading data Id1 ID2 belongs to book ISBN XXX.
+ //  Current Behaviour:InvalidDataAccessApiUsageException: The given id must not be null] (when not inserting ISBN)
+ //  & BookNotFoundException (when inserting ISBN)
  @Override
  public ReadingDataDTO updateReadingData(Long id, ReadingDataDTO updatedReadingDataDTO) {
   Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(id);
 
   if (optionalEntity.isPresent()) {
    ReadingDataEntity entity = optionalEntity.get();
-   // Update fields with values from updatedReadingDataDTO
    entity.setStartedDate(updatedReadingDataDTO.getStartedDate());
    entity.setFinishedDate(updatedReadingDataDTO.getFinishedDate());
    entity.setStatus(updatedReadingDataDTO.getStatus());
@@ -56,24 +71,19 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
    ReadingDataEntity updatedEntity = readingDataRepository.save(entity);
    return entityToDto(updatedEntity);
   } else {
-   // TODO never return null!
-// TODO handle 601 & 901
-   return null;
+   throw new IdNotFoundException(id);
   }
  }
 
  @Override
  public boolean eraseReadingData(Long id) {
   Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(id);
-
   if (optionalEntity.isPresent()) {
    ReadingDataEntity entity = optionalEntity.get();
    readingDataRepository.delete(entity);
-   // TODO return confirmation of deletion
    return true;
   } else {
-// TODO handle 601 & 901
-   return false;
+   throw new IdNotFoundException(id);
   }
  }
 

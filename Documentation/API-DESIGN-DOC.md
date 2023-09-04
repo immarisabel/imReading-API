@@ -10,8 +10,8 @@ Email: projects@marisabel.nl
 ```
 
 ### 1. Introduction
-   
-   #### 1.1 Purpose
+
+### 1.1 Purpose
 
    Since I embarked on my reading journey, I've been on the hunt for methods to track my books. I've experimented with journals, blogs, apps, and even dabbled in the realm of social media. Yet, I never found a solid fit until I started updating my Goodreads account. It was then that I realized what had been missing all along. Beyond simply cataloging books—an ability most modern apps possess—I've yearned to document my experience. I want to capture my thoughts as I read, not just after the last page is turned.
 
@@ -365,23 +365,23 @@ For details about the fields see the [DBDocs.io page
 | 422              | Unprocessable Entity                   | `{ "error": "Validation failed" }`                         |
 | 500              | Internal Server Error                  | `{ "error": "Internal server error" }`                     |
 
-#### Book Errors
+#### Global Errors (6XX)
 
-| Error Code | Description   | Example Response Body                                 |
-|------------|---------------|-------------------------------------------------------|
-| 601   ✔    | No Book Found | `{ "error": "No book found with the provided ISBN" }` |
+| Error Code | Description             | Example Response Body                                       |
+|------------|-------------------------|-------------------------------------------------------------|
+| 601        | Nothing Found with ISBN | `{ "error": "Nothing found with the provided ISBN" }`       |
+| 602        | ID Not Found            | `{ "error": "No matching ID found" }`                       |
+| 603        | Invalid Date Format     | `{ "error": "Invalid date format, please use YYYY-MM-DD" }` |
 
-#### Log Errors
+#### Log Errors & Books (7XX)
 
-| Error Code | Description                 | Example Response Body                                       |
-|------------|-----------------------------|-------------------------------------------------------------|
-| 704        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`        |
-| 705        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`        |
-| 706        | Invalid Date Format         | `{ "error": "Invalid date format, please use YYYY-MM-DD" }` |
-| 707        | Log Not Found               | `{ "error": "Reading log not found with the given ID" }`    |
+| Error Code | Description                 | Example Response Body                                              |
+|------------|-----------------------------|--------------------------------------------------------------------|
+| 703        | Duplicate Book Exception    | `{ "error": "There is already a book with ISBN in the database" }` |
+| 704        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`               |
+| 705        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`               |
 
-
-#### Shelves Errors (7XX)
+#### Shelves & Tags Errors (8XX)
 
 | Error Code | Description        | Example Response Body                                      |
 |------------|--------------------|------------------------------------------------------------|
@@ -389,14 +389,13 @@ For details about the fields see the [DBDocs.io page
 | 802        | Invalid Shelf Name | `{ "error": "Invalid shelf name format" }`                 |
 | 803   ✔    | Duplicate Shelf    | `{ "error": "A shelf with the same name already exists" }` |
 
-#### Reading Data Errors (8XX)
+#### Reading Data Errors (9XX)
 
-| Error Code | Description                 | Example Response Body                                       |
-|------------|-----------------------------|-------------------------------------------------------------|
-| 902        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`        |
-| 903        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`        |
-| 904        | Invalid Date Format         | `{ "error": "Invalid date format, please use YYYY-MM-DD" }` |
-
+| Error Code | Description                 | Example Response Body                                 |
+|------------|-----------------------------|-------------------------------------------------------|
+| 901        | No Reading Data Found       | `{ "error": "No reading data found for ISBN: isbn" }` |
+| 902        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`  |
+| 903        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`  |
 
 ### 6. Security
 
