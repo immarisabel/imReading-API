@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class BooksExceptionHandler {
 
- /* Global exceptions handler under code 71X for Books Service */
+ /* Global exceptions handler under code 70X for Books Service */
 
  @ExceptionHandler(DuplicateBookException.class)
  public ResponseEntity<CustomResponses> handleDuplicateBookException(DuplicateBookException ex) {

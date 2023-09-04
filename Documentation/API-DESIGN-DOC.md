@@ -367,19 +367,20 @@ For details about the fields see the [DBDocs.io page
 
 #### Global Errors (6XX)
 
-| Error Code | Description             | Example Response Body                                       |
-|------------|-------------------------|-------------------------------------------------------------|
-| 601        | Nothing Found with ISBN | `{ "error": "Nothing found with the provided ISBN" }`       |
-| 602        | ID Not Found            | `{ "error": "No matching ID found" }`                       |
-| 603        | Invalid Date Format     | `{ "error": "Invalid date format, please use YYYY-MM-DD" }` |
+| Error Code | Description             | Example Response Body                                                       |
+|------------|-------------------------|-----------------------------------------------------------------------------|
+| 601        | Nothing Found with ISBN | `{ "error": "Nothing found with the provided ISBN" }`                       |
+| 602        | ID Not Found            | `{ "error": "No matching ID found" }`                                       |
+| 603        | Invalid Date Format     | `{ "error": "Wrong date format, please use 'yyyy-MM-dd'T'HH:mm:ss.SSSX'" }` |
 
-#### Log Errors & Books (7XX)
+#### Books (70X) & Log Errors (71X)
 
-| Error Code | Description                 | Example Response Body                                              |
-|------------|-----------------------------|--------------------------------------------------------------------|
-| 703        | Duplicate Book Exception    | `{ "error": "There is already a book with ISBN in the database" }` |
-| 704        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`               |
-| 705        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`               |
+| Error Code | Description                   | Example Response Body                                               |
+|------------|-------------------------------|---------------------------------------------------------------------|
+| 701        | Empty book list               | `{ "error": "No books found in database" }`                         |
+| 703        | Duplicate Book Exception      | `{ "error": "There is already a book with ISBN in the database" }`  |
+| 711        | Book Already Marked as Read   | `{ "error": "This book is already marked as read" }`                |
+| 712        | Pages exceed the book's pages | `{ "error": "Your current page is greater than the book's pages" }` | 
 
 #### Shelves & Tags Errors (8XX)
 

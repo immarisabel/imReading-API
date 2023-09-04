@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 @Service
 public class BooksServiceImplementation implements BooksService {
 
-// TODO handle exceptions for this service
 
  private final BooksRepository booksRepository;
  private final ShelvesRepository shelvesRepository;
