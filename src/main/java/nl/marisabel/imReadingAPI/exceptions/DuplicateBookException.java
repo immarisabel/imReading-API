@@ -7,9 +7,9 @@
 
 package nl.marisabel.imReadingAPI.exceptions;
 
-public class IdNotFoundException extends RuntimeException {
- public IdNotFoundException(Long id) {
-  super("ID: " + id + " not found.");
+public class DuplicateBookException extends RuntimeException {
+ public DuplicateBookException(String isbn) {
+  super("There is already a book with ISBN " + isbn + " in the database");
  }
-}
 
+}

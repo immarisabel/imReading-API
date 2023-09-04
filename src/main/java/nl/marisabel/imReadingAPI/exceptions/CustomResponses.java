@@ -7,8 +7,17 @@
 
 package nl.marisabel.imReadingAPI.exceptions;
 
-public class DuplicateNameException extends RuntimeException {
- public DuplicateNameException(String shelfName) {
-  super("A shelf with the same name already exists: " + shelfName);
- }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class CustomResponses {
+ private int code;
+ private String message;
+
 }
+
+

@@ -7,9 +7,10 @@
 
 package nl.marisabel.imReadingAPI.exceptions;
 
-public class IdNotFoundException extends RuntimeException {
- public IdNotFoundException(Long id) {
-  super("ID: " + id + " not found.");
- }
-}
 
+public class NoDataFoundException extends RuntimeException {
+ public NoDataFoundException(String isbn) {
+  super("No reading data found for ISBN: " + isbn);
+ }
+
+}

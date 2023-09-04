@@ -7,9 +7,9 @@
 
 package nl.marisabel.imReadingAPI.exceptions;
 
-public class IdNotFoundException extends RuntimeException {
- public IdNotFoundException(Long id) {
-  super("ID: " + id + " not found.");
+public class DuplicateTagException extends RuntimeException {
+ public DuplicateTagException(String tagName) {
+  super("A tag with the same name already exists: " + tagName);
  }
-}
 
+}

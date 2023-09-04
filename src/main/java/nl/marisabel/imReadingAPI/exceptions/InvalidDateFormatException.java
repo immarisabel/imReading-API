@@ -7,15 +7,11 @@
 
 package nl.marisabel.imReadingAPI.exceptions;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class CustomErrorResponse {
- private int code;
- private String message;
+public class InvalidDateFormatException extends RuntimeException {
+ public InvalidDateFormatException(Date date) {
+  super("Invalid date format: " + date + " Please use: ");
+ }
 
 }
