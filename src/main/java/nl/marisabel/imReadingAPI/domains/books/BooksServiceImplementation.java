@@ -9,15 +9,20 @@ package nl.marisabel.imReadingAPI.domains.books;
 
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesRepository;
+import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.DuplicateBookException;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class BooksServiceImplementation implements BooksService {
+
+// TODO handle exceptions for this service
 
  private final BooksRepository booksRepository;
  private final ShelvesRepository shelvesRepository;
@@ -38,14 +43,13 @@ public class BooksServiceImplementation implements BooksService {
   return entityToDto(savedEntity);
  }
 
- // TODO never return null!
  @Override
  public BooksDTO getBookByIsbn(String isbn) {
   BooksEntity entity = booksRepository.findById(isbn).orElse(null);
   if (entity != null) {
    return entityToDto(entity);
   }
-  return null;
+  throw new BookNotFoundException(isbn);
  }
 
  @Override
@@ -54,23 +58,25 @@ public class BooksServiceImplementation implements BooksService {
   return convertEntityListToDtoList(entityList);
  }
 
- // TODO never return null!
  @Override
  public BooksDTO updateBook(String isbn, BooksDTO updatedBooksDTO) {
   if (booksRepository.existsById(isbn)) {
    BooksEntity updatedEntity = dtoToEntity(updatedBooksDTO);
-   updatedEntity.setIsbn(isbn); // Update the ID
-
+   updatedEntity.setIsbn(isbn);
    BooksEntity savedEntity = booksRepository.save(updatedEntity);
    return entityToDto(savedEntity);
   }
-  return null;
+  throw new BookNotFoundException(isbn);
  }
 
  @Override
  public boolean deleteBook(String isbn) {
-  booksRepository.deleteById(isbn);
-  return false;
+  Optional<BooksEntity> booksEntityOptional = booksRepository.findById(isbn);
+  if (booksEntityOptional.isPresent()) {
+   booksRepository.deleteById(isbn);
+   return true;
+  }
+  throw new BookNotFoundException(isbn);
  }
 
 

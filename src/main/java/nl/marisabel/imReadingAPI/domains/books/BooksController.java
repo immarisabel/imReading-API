@@ -9,13 +9,12 @@ package nl.marisabel.imReadingAPI.domains.books;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
 import nl.marisabel.imReadingAPI.customResponse.ResponseHandler;
+import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.NoBooksFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +28,17 @@ public class BooksController {
 
  @Autowired
  private BooksServiceImplementation booksService;
+
+
+ @GetMapping
+ public ResponseEntity<List<BooksDTO>> getAllBooks() {
+  List<BooksDTO> books = booksService.getAllBooks();
+  if (books.isEmpty()) {
+   throw new NoBooksFoundException(books);
+  } else {
+   return ResponseEntity.ok(books);
+  }
+ }
 
 
  @PostMapping
@@ -47,10 +57,6 @@ public class BooksController {
   }
 
   return new ResponseEntity<>(book, HttpStatus.OK);
- }
- @GetMapping
- public List<BooksDTO> getAllBooks() {
-  return booksService.getAllBooks();
  }
 
  @PutMapping("/{isbn}")

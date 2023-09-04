@@ -10,6 +10,7 @@ package nl.marisabel.imReadingAPI.domains.books;
 
 import nl.marisabel.imReadingAPI.exceptions.CustomResponses;
 import nl.marisabel.imReadingAPI.exceptions.DuplicateBookException;
+import nl.marisabel.imReadingAPI.exceptions.NoBooksFoundException;
 import nl.marisabel.imReadingAPI.exceptions.NoDataFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,12 @@ public class BooksExceptionHandler {
  @ExceptionHandler(DuplicateBookException.class)
  public ResponseEntity<CustomResponses> handleDuplicateBookException(DuplicateBookException ex) {
   CustomResponses errorResponse = new CustomResponses(703, ex.getMessage());
+  return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+ }
+
+ @ExceptionHandler(NoBooksFoundException.class)
+ public ResponseEntity<CustomResponses> handleEmptyListException(NoBooksFoundException ex) {
+  CustomResponses errorResponse = new CustomResponses(701, "There are no books in the database.");
   return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
  }
 }
