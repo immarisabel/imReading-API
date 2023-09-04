@@ -9,13 +9,15 @@ package nl.marisabel.imReadingAPI.domains.logs;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
+import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Log
-@RequestMapping(value = {"${url.mapping.v1}/logs/{isbn}"})
+@RequestMapping(value = {"${url.mapping.v1}/logs/"})
 @Tag(name = "logs service", description = "manage the logs for each book")
 public class LogsController {
 
@@ -27,49 +29,52 @@ public class LogsController {
 
  @PostMapping
  public ResponseEntity<LogsDTO> addLog(@RequestBody LogsDTO logsDTO) {
-
   LogsDTO addedLog = logsService.addLogToBook(logsDTO);
-  System.out.println(logsDTO);
   if (addedLog != null) {
    return new ResponseEntity<>(addedLog, HttpStatus.CREATED);
   } else {
-   // TODO implement 601
    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
  }
 
- @GetMapping
+ // TODO GET methods not working IllegalStateException: Ambiguous handler methods mapped for
+
+ @GetMapping("/{isbn}")
  public ResponseEntity<LogsDTO> getAllLogsForABookByIsbn(@PathVariable String isbn) {
   LogsDTO logsDTO = logsService.getAllLogsForABook(isbn);
   if (logsDTO != null) {
    return new ResponseEntity<>(logsDTO, HttpStatus.OK);
   } else {
-   return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+   throw new BookNotFoundException(isbn);
   }
  }
 
- @PutMapping
- public ResponseEntity<LogsDTO> updateLog(@PathVariable String isbn, @PathVariable Long readingDataId, @RequestBody LogsDTO updatedLogsDTO) {
-  LogsDTO updatedReadingData = logsService.updateLog(readingDataId, updatedLogsDTO);
-  if (updatedReadingData != null) {
-   return new ResponseEntity<>(updatedReadingData, HttpStatus.OK);
+ @GetMapping("/{id}")
+ public ResponseEntity<LogsDTO> getLogById(@PathVariable Long id) {
+  LogsDTO logsDTO = logsService.getLogById(id);
+  if (logsDTO != null) {
+   return new ResponseEntity<>(logsDTO, HttpStatus.OK);
   } else {
-   // TODO implement 601
-   // TODO implement 901 - no data found
-   return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+   throw new IdNotFoundException(id);
   }
  }
 
- @DeleteMapping
- public ResponseEntity<Void> deleteLog(@PathVariable String isbn, @PathVariable Long readingDataId) {
-  boolean deleted = logsService.deleteLog(readingDataId);
+ @PutMapping("/{id}")
+ public ResponseEntity<LogsDTO> updateLog(@PathVariable Long id, @RequestBody LogsDTO updatedLogsDTO) {
+  LogsDTO updatedReadingData = logsService.updateLog(id, updatedLogsDTO);
+   if (updatedReadingData == null) {
+    throw new IdNotFoundException(id);
+   }
+  return new ResponseEntity<>(updatedReadingData, HttpStatus.OK);
+ }
+
+ @DeleteMapping("/{id}")
+ public ResponseEntity<String> deleteLog(@PathVariable Long id) {
+  boolean deleted = logsService.deleteLog(id);
   if (deleted) {
-   return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-  } else {
-   // TODO implement 601
-   // TODO implement 901 - no data found
-   return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+   return ResponseEntity.ok("Data deleted.");
   }
+  return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Deleting Failed: Reading data with ID " + id + " not found.");
  }
 }
 

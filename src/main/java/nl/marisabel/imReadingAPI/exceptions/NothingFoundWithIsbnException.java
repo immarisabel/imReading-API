@@ -8,9 +8,9 @@
 package nl.marisabel.imReadingAPI.exceptions;
 
 
-public class NoDataFoundException extends RuntimeException {
- public NoDataFoundException(String isbn) {
-  super("No reading data found for ISBN: " + isbn);
+public class NothingFoundWithIsbnException extends RuntimeException {
+ public NothingFoundWithIsbnException(String isbn) {
+  super("Nothing found for ISBN: " + isbn);
  }
 
 }

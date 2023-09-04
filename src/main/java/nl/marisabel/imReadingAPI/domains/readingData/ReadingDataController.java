@@ -50,14 +50,10 @@ public class ReadingDataController {
  @PutMapping("/{id}")
  public ResponseEntity<ReadingDataDTO> updateReadingData(@PathVariable Long id, @RequestBody ReadingDataDTO updatedReadingDataDTO) {
   ReadingDataDTO updatedReadingData = readingDataService.updateReadingData(id, updatedReadingDataDTO);
-  if (updatedReadingData != null) {
-   return new ResponseEntity<>(updatedReadingData, HttpStatus.OK);
-  } else {
    if (updatedReadingData == null) {
     throw new IdNotFoundException(id);
    }
-  }
-  return null;
+  return new ResponseEntity<>(updatedReadingData, HttpStatus.OK);
  }
 
  @DeleteMapping("/{id}")

@@ -6,11 +6,10 @@
  */
 package nl.marisabel.imReadingAPI.domains.readingData;
 
-import nl.marisabel.imReadingAPI.domains.googleSearchApi.NoBookFoundException;
 import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.DataExistingCheck;
 import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.NoDataFoundException;
+import nl.marisabel.imReadingAPI.exceptions.NothingFoundWithIsbnException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +44,7 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
   if (readingDataEntity != null) {
    return entityToDto(readingDataEntity);
   } else {
-   throw new NoDataFoundException(isbn);
+   throw new NothingFoundWithIsbnException(isbn);
   }
  }
 
