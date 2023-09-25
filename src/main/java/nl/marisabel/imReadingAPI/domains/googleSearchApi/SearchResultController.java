@@ -24,7 +24,7 @@ import java.util.List;
 @Log
 @RestController
 @RequestMapping(value = { "${url.mapping.v1}" })
-@Tag(name = "google books search service", description = "search for books and returns the body of a title to use on our book service")
+@Tag(name = "1. google books search service", description = "search for books and returns the body of a title to use on our book service")
 public class SearchResultController {
 
  @Autowired

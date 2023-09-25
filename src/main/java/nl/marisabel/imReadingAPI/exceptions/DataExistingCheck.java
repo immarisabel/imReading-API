@@ -13,10 +13,10 @@ import nl.marisabel.imReadingAPI.domains.logs.LogsEntity;
 import nl.marisabel.imReadingAPI.domains.logs.LogsRepository;
 import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
 import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataRepository;
+import nl.marisabel.imReadingAPI.domains.reviews.ReviewsEntity;
+import nl.marisabel.imReadingAPI.domains.reviews.ReviewsRepository;
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesRepository;
-import nl.marisabel.imReadingAPI.domains.tags.TagsEntity;
-import nl.marisabel.imReadingAPI.domains.tags.TagsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -26,7 +26,7 @@ public class DataExistingCheck {
 
  private final ReadingDataRepository readingDataRepository;
  private final BooksRepository booksRepository;
- private final TagsRepository tagsRepository;
+ private final ReviewsRepository reviewsRepository;
 
  private final ShelvesRepository shelvesRepository;
 
@@ -34,12 +34,12 @@ public class DataExistingCheck {
 
  public DataExistingCheck(ReadingDataRepository readingDataRepository,
                           BooksRepository booksRepository,
-                          TagsRepository tagsRepository,
+                          ReviewsRepository reviewsRepository,
                           ShelvesRepository shelvesRepository,
                           LogsRepository logsRepository) {
   this.readingDataRepository = readingDataRepository;
   this.booksRepository = booksRepository;
-  this.tagsRepository = tagsRepository;
+  this.reviewsRepository = reviewsRepository;
   this.shelvesRepository = shelvesRepository;
   this.logsRepository = logsRepository;
  }
@@ -70,8 +70,8 @@ public class DataExistingCheck {
   return anId.isPresent();
  }
 
- public boolean doesTagExist(Long id) {
-  Optional<TagsEntity> anId = tagsRepository.findById(id);
+ public boolean doesReviewExist(Long id) {
+  Optional<ReviewsEntity> anId = reviewsRepository.findById(id);
   return anId.isPresent();
  }
 

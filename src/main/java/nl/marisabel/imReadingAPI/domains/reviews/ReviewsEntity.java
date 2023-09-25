@@ -5,7 +5,7 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.domains.logs;
+package nl.marisabel.imReadingAPI.domains.reviews;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,17 +20,15 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "logs")
-public class LogsEntity {
+@Table(name = "reviews")
+public class ReviewsEntity {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
  private Long id;
  private String bookIsbn;
  private Date date;
- private int page;
- private boolean favorite;
  @Column(columnDefinition = "TEXT")
- private String log;
+ private String review;
 
 
  @Override

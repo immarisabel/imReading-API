@@ -7,6 +7,8 @@
 
 package nl.marisabel.imReadingAPI.domains.shelves;
 
+import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.ShelfNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,27 +33,24 @@ public class ShelvesServiceImplementation implements ShelvesService {
   return convertEntityToDto(savedEntity);
  }
 
- // TODO never return null!
  @Override
  public ShelvesDTO updateShelf(Long id, ShelvesDTO updatedShelfDTO) {
   if (shelvesRepository.existsById(id)) {
    ShelvesEntity updatedEntity = convertDtoToEntity(updatedShelfDTO);
    updatedEntity.setId(id);
-
    ShelvesEntity savedEntity = shelvesRepository.save(updatedEntity);
    return convertEntityToDto(savedEntity);
   }
-  return null;
+  throw new IdNotFoundException(id);
  }
 
- // TODO never return null!
  @Override
  public ShelvesDTO getShelfById(Long id) {
   ShelvesEntity entity = shelvesRepository.findById(id).orElse(null);
   if (entity != null) {
    return convertEntityToDto(entity);
   }
-  return null;
+  throw new IdNotFoundException(id);
  }
 
  @Override
@@ -61,16 +60,13 @@ public class ShelvesServiceImplementation implements ShelvesService {
  }
 
 
- // TODO never return null!
  @Override
  public ShelvesDTO getShelfByName(String name) {
   ShelvesEntity shelfEntity = shelvesRepository.findByName(name);
-
   if (shelfEntity != null) {
    return convertEntityToDto(shelfEntity);
   }
-
-  return null;
+  throw new ShelfNotFoundException(name);
  }
 
 
@@ -104,7 +100,6 @@ public class ShelvesServiceImplementation implements ShelvesService {
           .collect(Collectors.toList());
  }
 
- // TODO never return null!
  public boolean isShelfNameDuplicate(String shelfName) {
   ShelvesDTO existingShelf = getShelfByName(shelfName);
   return existingShelf != null;

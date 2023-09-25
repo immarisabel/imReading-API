@@ -76,7 +76,7 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
  }
 
  @Override
- public boolean eraseReadingData(Long id) {
+ public boolean deleteReadingData(Long id) {
   Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(id);
   if (optionalEntity.isPresent()) {
    ReadingDataEntity entity = optionalEntity.get();

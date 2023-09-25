@@ -7,11 +7,21 @@
 
 package nl.marisabel.imReadingAPI.domains.logs;
 
+import nl.marisabel.imReadingAPI.exceptions.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class LogsExceptionHandler {
 
- /* Global exceptions handler under code 71X for Books Service */
+ /* Global exceptions handler under code 71X for Logs Service */
+
+ @ExceptionHandler(PageTooLongException.class)
+ public ResponseEntity<CustomResponses> handleEmptyListException(PageTooLongException ex) {
+  CustomResponses errorResponse = new CustomResponses(711, ex.getMessage());
+  return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
+ }
 
 }

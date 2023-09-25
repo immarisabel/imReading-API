@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = {"${url.mapping.v1}/shelves"})
-@Tag(name = "shelves service", description = "manage the shelves on the database")
+@Tag(name = "6. shelves service", description = "manage the shelves on the database")
 public class ShelvesController {
 
  @Autowired
@@ -38,15 +38,7 @@ public class ShelvesController {
   return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
  }
 
- /**
-  * REQUEST BODY EXAMPLE
-  * {
-  * "name": "Sample Shelf"
-  * }
-  *
-  * @param shelf JSON Request Body
-  * @return Response 200
-  */
+
  @PostMapping
  public ResponseEntity<ShelvesDTO> createShelf(@RequestBody ShelvesDTO shelf) {
   try {
@@ -96,11 +88,9 @@ public class ShelvesController {
  @DeleteMapping("/{id}")
  public ResponseEntity<?> deleteShelf(@PathVariable Long id) {
   boolean deleted = shelvesService.deleteShelf(id);
-
   if (!deleted) {
    throw new IdNotFoundException(id);
   }
-
   return new ResponseEntity<>(HttpStatus.NO_CONTENT);
  }
 }

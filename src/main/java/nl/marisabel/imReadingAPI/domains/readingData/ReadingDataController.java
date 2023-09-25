@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Log
 @RequestMapping(value = {"${url.mapping.v1}/reading/"})
-@Tag(name = "reading data service", description = "manage the reading data for each book")
+@Tag(name = "3. reading data service", description = "manage the reading data for each book")
 public class ReadingDataController {
 
  private final ReadingDataServiceImplementation readingDataService;
@@ -53,16 +53,13 @@ public class ReadingDataController {
   if (updatedReadingData != null) {
    return new ResponseEntity<>(updatedReadingData, HttpStatus.OK);
   } else {
-   if (updatedReadingData == null) {
-    throw new IdNotFoundException(id);
-   }
+   throw new IdNotFoundException(id);
   }
-  return null;
  }
 
  @DeleteMapping("/{id}")
  public ResponseEntity<String> deleteReadingData(@PathVariable Long id) {
-  boolean deleted = readingDataService.eraseReadingData(id);
+  boolean deleted = readingDataService.deleteReadingData(id);
   if (deleted) {
    return ResponseEntity.ok("Data deleted.");
   }

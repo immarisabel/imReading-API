@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @Log
 @RequestMapping(value = {"${url.mapping.v1}/books"})
-@Tag(name = "book service", description = "manage the books on the database")
+@Tag(name = "2. book service", description = "manage the books on the database")
 public class BooksController {
 
  @Autowired
@@ -62,11 +62,9 @@ public class BooksController {
  @PutMapping("/{isbn}")
  public ResponseEntity<?> updateBook(@PathVariable String isbn, @RequestBody BooksDTO updatedBook) {
   BooksDTO updated = booksService.updateBook(isbn, updatedBook);
-
   if (updated == null) {
    throw new BookNotFoundException(isbn);
   }
-
   return new ResponseEntity<>(updated, HttpStatus.OK);
  }
 

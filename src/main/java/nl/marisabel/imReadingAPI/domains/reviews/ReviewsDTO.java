@@ -5,7 +5,8 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.domains.tags;
+package nl.marisabel.imReadingAPI.domains.reviews;
+
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -13,12 +14,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Tag(name = "Tags Model")
-public class TagsDTO {
- private Long id;
- private String name;
+@Tag(name = "Reviews Model")
+public class ReviewsDTO {
+ private String bookIsbn;
+ private Date date;
+ private String review;
 }

@@ -377,10 +377,9 @@ For details about the fields see the [DBDocs.io page
 
 | Error Code | Description                   | Example Response Body                                               |
 |------------|-------------------------------|---------------------------------------------------------------------|
-| 701        | Empty book list               | `{ "error": "No books found in database" }`                         |
-| 703        | Duplicate Book Exception      | `{ "error": "There is already a book with ISBN in the database" }`  |
-| 711        | Book Already Marked as Read   | `{ "error": "This book is already marked as read" }`                |
-| 712        | Pages exceed the book's pages | `{ "error": "Your current page is greater than the book's pages" }` | 
+| 701   ✔    | Empty book list               | `{ "error": "No books found in database" }`                         |
+| 703   ✔    | Duplicate Book Exception      | `{ "error": "There is already a book with ISBN in the database" }`  |
+| 711   ✔    | Pages exceed the book's pages | `{ "error": "Your current page is greater than the book's pages" }` | 
 
 #### Shelves & Tags Errors (8XX)
 
@@ -390,13 +389,16 @@ For details about the fields see the [DBDocs.io page
 | 802        | Invalid Shelf Name | `{ "error": "Invalid shelf name format" }`                 |
 | 803   ✔    | Duplicate Shelf    | `{ "error": "A shelf with the same name already exists" }` |
 
-#### Reading Data Errors (9XX)
+#### Reading Data Errors (9XX) & Reviews (91X)
 
-| Error Code | Description                 | Example Response Body                                 |
-|------------|-----------------------------|-------------------------------------------------------|
-| 901        | No Reading Data Found       | `{ "error": "No reading data found for ISBN: isbn" }` |
-| 902        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`  |
-| 903        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`  |
+| Error Code | Description                 | Example Response Body                                    |
+|------------|-----------------------------|----------------------------------------------------------|
+| 901        | No Reading Data Found       | `{ "error": "No reading data found for ISBN: isbn" }`    |
+| 902        | Missing Required Fields     | `{ "error": "Missing required fields in log data" }`     |
+| 903        | Book Already Marked as Read | `{ "error": "This book is already marked as read" }`     |
+| 911        | No Review Found             | `{ "error": "No review found for ISBN: isbn" }`          |
+| 912        | Review Exist Already        | `{ "error": "A review for ISBN: isbn, already exist." }` |
+
 
 ### 6. Security
 

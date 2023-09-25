@@ -7,8 +7,6 @@
 
 package nl.marisabel.imReadingAPI.domains.readingData;
 
-import nl.marisabel.imReadingAPI.domains.logs.LogsDTO;
-import nl.marisabel.imReadingAPI.domains.logs.LogsEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +18,7 @@ public interface ReadingDataService {
 
  ReadingDataDTO updateReadingData(Long id, ReadingDataDTO updatedReadingDataDTO);
 
- boolean eraseReadingData(Long id);
+ boolean deleteReadingData(Long id);
 
  ReadingDataDTO entityToDto(ReadingDataEntity entity);
 

@@ -6,6 +6,10 @@
  */
 package nl.marisabel.imReadingAPI.domains.logs;
 
+import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
+import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.DataExistingCheck;
+import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,33 +17,37 @@ import java.util.Optional;
 
 @Service
 public class LogsServiceImplementation implements LogsService {
-
+ private final DataExistingCheck dataExistingCheck;
  private final LogsRepository logsRepository;
 
  @Autowired
- public LogsServiceImplementation(LogsRepository logsRepository) {
+ public LogsServiceImplementation(DataExistingCheck dataExistingCheck, LogsRepository logsRepository) {
+  this.dataExistingCheck = dataExistingCheck;
   this.logsRepository = logsRepository;
  }
 
+
  @Override
  public LogsDTO addLogToBook(LogsDTO logsDTO) {
-  LogsEntity entity = dtoToEntity(logsDTO);
+  if (dataExistingCheck.doesIsbnExistsInBooks(logsDTO.getBookIsbn())) {
+   LogsEntity entity = dtoToEntity(logsDTO);
   LogsEntity savedEntity = logsRepository.save(entity);
   return entityToDto(savedEntity);
+  } else {
+   throw new BookNotFoundException(logsDTO.getBookIsbn());
+  }
  }
 
- // TODO never return null!
  @Override
  public LogsDTO getAllLogsForABook(String isbn) {
   LogsEntity logsEntity = logsRepository.findByIsbn(isbn);
   if (logsEntity != null) {
    return entityToDto(logsEntity);
   } else {
-   return null;
+   throw new BookNotFoundException(isbn);
   }
  }
 
- // TODO never return null!
  @Override
  public LogsDTO updateLog(Long id, LogsDTO updatedLogsDTO) {
   Optional<LogsEntity> optionalEntity = logsRepository.findById(id);
@@ -53,23 +61,19 @@ public class LogsServiceImplementation implements LogsService {
    LogsEntity updatedEntity = logsRepository.save(entity);
    return entityToDto(updatedEntity);
   } else {
-// TODO handle 601 & 901
-   return null;
+   throw new IdNotFoundException(id);
   }
  }
 
  @Override
  public boolean deleteLog(Long id) {
   Optional<LogsEntity> optionalEntity = logsRepository.findById(id);
-
   if (optionalEntity.isPresent()) {
    LogsEntity entity = optionalEntity.get();
    logsRepository.delete(entity);
-   // TODO return confirmation of deletion
    return true;
   } else {
-// TODO handle 601 & 901
-   return false;
+   throw new IdNotFoundException(id);
   }
  }
 
