@@ -28,12 +28,12 @@ public class GlobalExceptionHandler {
   return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
  }
 
- @ExceptionHandler(InvalidDateFormatException.class)
- public ResponseEntity<CustomResponses> handleInvalidDateFormat(InvalidDateFormatException ex) {
+
+ @ExceptionHandler(NothingFoundWithIsbnException.class)
+ public ResponseEntity<CustomResponses> handleNoReadingDataFoundForIsbn(NothingFoundWithIsbnException ex) {
   CustomResponses errorResponse = new CustomResponses(603, ex.getMessage());
   return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
  }
-
 
  /* Global exceptions handler under code 5XX */
 

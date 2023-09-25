@@ -369,9 +369,9 @@ For details about the fields see the [DBDocs.io page
 
 | Error Code | Description             | Example Response Body                                                       |
 |------------|-------------------------|-----------------------------------------------------------------------------|
-| 601        | Nothing Found with ISBN | `{ "error": "Nothing found with the provided ISBN" }`                       |
+| 601        | No books found          | `{ "error": "No books found with the provided ISBN" }`                      |
 | 602        | ID Not Found            | `{ "error": "No matching ID found" }`                                       |
-| 603        | Invalid Date Format     | `{ "error": "Wrong date format, please use 'yyyy-MM-dd'T'HH:mm:ss.SSSX'" }` |
+| 603        | Nothing Found with ISBN | `{ "error": "Nothing found with the provided ISBN" }`                       |
 
 #### Books (70X) & Log Errors (71X)
 
@@ -384,10 +384,10 @@ For details about the fields see the [DBDocs.io page
 #### Shelves & Tags Errors (8XX)
 
 | Error Code | Description        | Example Response Body                                      |
-|------------|--------------------|------------------------------------------------------------|
-| 801   ✔    | Shelf Not Found    | `{ "error": "Shelf not found with the provided ID" }`      |
-| 802        | Invalid Shelf Name | `{ "error": "Invalid shelf name format" }`                 |
-| 803   ✔    | Duplicate Shelf    | `{ "error": "A shelf with the same name already exists" }` |
+|---------|--------------------|------------------------------------------------------------|
+| 801     | Shelf Not Found    | `{ "error": "Shelf not found with the provided ID" }`      |
+| 802     | Invalid Shelf Name | `{ "error": "Invalid shelf name format" }`                 |
+| 803     | Duplicate Shelf    | `{ "error": "A shelf with the same name already exists" }` |
 
 #### Reading Data Errors (9XX) & Reviews (91X)
 
