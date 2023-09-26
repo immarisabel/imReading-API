@@ -8,7 +8,7 @@
 package nl.marisabel.imReadingAPI.domains.shelves;
 
 import nl.marisabel.imReadingAPI.exceptions.CustomResponses;
-import nl.marisabel.imReadingAPI.exceptions.ShelfNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.ShelfNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

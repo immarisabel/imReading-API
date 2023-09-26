@@ -7,7 +7,7 @@
 
 package nl.marisabel.imReadingAPI.domains.shelves;
 
-import nl.marisabel.imReadingAPI.exceptions.ShelfNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.ShelfNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

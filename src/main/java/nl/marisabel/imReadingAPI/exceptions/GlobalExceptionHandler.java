@@ -7,6 +7,10 @@
 
 package nl.marisabel.imReadingAPI.exceptions;
 
+import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataNotFoundByIsbnException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.IdNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.NothingFoundWithIsbnException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

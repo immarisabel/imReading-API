@@ -10,6 +10,8 @@ package nl.marisabel.imReadingAPI.domains.shelves;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.marisabel.imReadingAPI.customResponse.ResponseHandler;
 import nl.marisabel.imReadingAPI.exceptions.*;
+import nl.marisabel.imReadingAPI.exceptions.books.ShelfNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DuplicateShelfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

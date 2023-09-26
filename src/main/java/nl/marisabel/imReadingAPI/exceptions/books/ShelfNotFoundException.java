@@ -5,7 +5,7 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.exceptions;
+package nl.marisabel.imReadingAPI.exceptions.books;
 
 public class ShelfNotFoundException extends RuntimeException {
  public ShelfNotFoundException(String name) {

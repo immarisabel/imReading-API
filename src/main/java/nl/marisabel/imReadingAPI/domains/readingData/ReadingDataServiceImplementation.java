@@ -6,7 +6,10 @@
  */
 package nl.marisabel.imReadingAPI.domains.readingData;
 
-import nl.marisabel.imReadingAPI.exceptions.*;
+import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataExistingCheck;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataNotFoundByIsbnException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.NothingFoundWithIsbnException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

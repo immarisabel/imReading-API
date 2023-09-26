@@ -5,7 +5,7 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.exceptions;
+package nl.marisabel.imReadingAPI.exceptions.books;
 
 import nl.marisabel.imReadingAPI.domains.books.BooksDTO;
 import nl.marisabel.imReadingAPI.domains.books.BooksEntity;

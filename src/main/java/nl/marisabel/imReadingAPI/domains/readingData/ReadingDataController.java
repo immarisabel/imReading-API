@@ -9,9 +9,8 @@ package nl.marisabel.imReadingAPI.domains.readingData;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.DataNotFoundByIsbnException;
-import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataNotFoundByIsbnException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

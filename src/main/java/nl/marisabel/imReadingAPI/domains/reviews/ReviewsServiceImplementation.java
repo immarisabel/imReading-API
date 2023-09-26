@@ -6,9 +6,9 @@
  */
 package nl.marisabel.imReadingAPI.domains.reviews;
 
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.DataExistingCheck;
-import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataExistingCheck;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.IdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

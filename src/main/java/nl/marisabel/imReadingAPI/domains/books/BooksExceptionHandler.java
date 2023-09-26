@@ -9,8 +9,8 @@ package nl.marisabel.imReadingAPI.domains.books;
 
 
 import nl.marisabel.imReadingAPI.exceptions.CustomResponses;
-import nl.marisabel.imReadingAPI.exceptions.DuplicateBookException;
-import nl.marisabel.imReadingAPI.exceptions.NoBooksFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.DuplicateBookException;
+import nl.marisabel.imReadingAPI.exceptions.books.NoBooksFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
