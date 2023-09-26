@@ -26,20 +26,20 @@ public class DataExistingCheck {
 
  private final ReadingDataRepository readingDataRepository;
  private final BooksRepository booksRepository;
-
  private final ShelvesRepository shelvesRepository;
-
  private final LogsRepository logsRepository;
+ private final ReviewsRepository reviewsRepository;
 
  public DataExistingCheck(ReadingDataRepository readingDataRepository,
                           BooksRepository booksRepository,
                           ReviewsRepository reviewsRepository,
                           ShelvesRepository shelvesRepository,
-                          LogsRepository logsRepository) {
+                          LogsRepository logsRepository, ReviewsRepository reviewsRepository1) {
   this.readingDataRepository = readingDataRepository;
   this.booksRepository = booksRepository;
   this.shelvesRepository = shelvesRepository;
   this.logsRepository = logsRepository;
+  this.reviewsRepository = reviewsRepository1;
  }
 
 
@@ -60,6 +60,10 @@ public class DataExistingCheck {
   return book != null;
  }
 
+public boolean doesIsbnExistsInReviews(String isbn) {
+  ReviewsEntity book = reviewsRepository.findByIsbn(isbn);
+  return book != null;
+}
 
  // CHECK FOR IDs
 

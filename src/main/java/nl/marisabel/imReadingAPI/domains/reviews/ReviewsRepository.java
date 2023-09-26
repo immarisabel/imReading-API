@@ -13,7 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReviewsRepository extends CrudRepository<ReviewsEntity, Long> {
+public interface ReviewsRepository extends CrudRepository<ReviewsEntity, String> {
 
  @Query("SELECT r FROM ReviewsEntity r WHERE r.bookIsbn = :isbn")
  ReviewsEntity findByIsbn(@Param("isbn") String isbn);

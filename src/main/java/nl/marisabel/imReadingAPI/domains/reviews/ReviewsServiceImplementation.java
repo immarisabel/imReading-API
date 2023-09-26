@@ -7,7 +7,9 @@
 package nl.marisabel.imReadingAPI.domains.reviews;
 
 import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.ReviewAlreadyExistsException;
 import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataExistingCheck;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataNotFoundByIsbnException;
 import nl.marisabel.imReadingAPI.exceptions.dataValidation.IdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,24 +28,21 @@ public class ReviewsServiceImplementation implements ReviewsService {
   this.dataExistingCheck = dataExistingCheck;
  }
 
- @Override
- public Long getReviewIdForBook(String isbn) {
-  ReviewsEntity reviewsEntity = reviewsRepository.findByIsbn(isbn);
-  if (reviewsEntity != null) {
-   return reviewsEntity.getId();
-  } else {
-   throw new BookNotFoundException(isbn);
-  }
- }
 
  @Override
  public ReviewsDTO addReviewToBook(ReviewsDTO reviewsDTO) {
-  if (dataExistingCheck.doesIsbnExistsInBooks(reviewsDTO.getBookIsbn())) {
-   ReviewsEntity entity = dtoToEntity(reviewsDTO);
-   ReviewsEntity savedEntity = reviewsRepository.save(entity);
-   return entityToDto(savedEntity);
+  String bookIsbn = reviewsDTO.getBookIsbn();
+
+  if (!dataExistingCheck.doesIsbnExistsInReviews(bookIsbn)) {
+   if (dataExistingCheck.doesIsbnExistsInBooks(bookIsbn)) {
+    ReviewsEntity entity = dtoToEntity(reviewsDTO);
+    ReviewsEntity savedEntity = reviewsRepository.save(entity);
+    return entityToDto(savedEntity);
+   } else {
+    throw new BookNotFoundException(bookIsbn);
+   }
   } else {
-   throw new BookNotFoundException(reviewsDTO.getBookIsbn());
+   throw new ReviewAlreadyExistsException(bookIsbn);
   }
  }
 
@@ -53,13 +52,13 @@ public class ReviewsServiceImplementation implements ReviewsService {
   if (reviewsEntity != null) {
    return entityToDto(reviewsEntity);
   } else {
-   throw new BookNotFoundException(isbn);
+   throw new DataNotFoundByIsbnException(isbn);
   }
  }
 
  @Override
  public ReviewsDTO updateReview(String isbn, ReviewsDTO updatedReviewsDTO) {
-  Optional<ReviewsEntity> optionalEntity = reviewsRepository.findById(getReviewIdForBook(isbn));
+  Optional<ReviewsEntity> optionalEntity = reviewsRepository.findById(isbn);
   if (optionalEntity.isPresent()) {
    ReviewsEntity entity = optionalEntity.get();
    entity.setDate(updatedReviewsDTO.getDate());
@@ -73,13 +72,13 @@ public class ReviewsServiceImplementation implements ReviewsService {
 
  @Override
  public boolean deleteReview(String isbn) {
-  Optional<ReviewsEntity> optionalEntity = reviewsRepository.findById(getReviewIdForBook(isbn));
+  Optional<ReviewsEntity> optionalEntity = reviewsRepository.findById(isbn);
   if (optionalEntity.isPresent()) {
    ReviewsEntity entity = optionalEntity.get();
    reviewsRepository.delete(entity);
    return true;
   } else {
-   throw new IdNotFoundException(getReviewIdForBook(isbn));
+   throw new DataNotFoundByIsbnException(isbn);
   }
  }
 

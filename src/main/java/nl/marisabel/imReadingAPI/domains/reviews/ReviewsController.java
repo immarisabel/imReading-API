@@ -10,6 +10,7 @@ package nl.marisabel.imReadingAPI.domains.reviews;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataExistingCheck;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,25 +22,21 @@ import org.springframework.web.bind.annotation.*;
 public class ReviewsController {
 
  private final ReviewsServiceImplementation reviewsService;
+ private final DataExistingCheck dataExistingCheck;
 
- public ReviewsController(ReviewsServiceImplementation reviewsService) {
+ public ReviewsController(ReviewsServiceImplementation reviewsService, DataExistingCheck dataExistingCheck) {
   this.reviewsService = reviewsService;
+  this.dataExistingCheck = dataExistingCheck;
  }
 
  @PostMapping
  public ResponseEntity<ReviewsDTO> addReview(@RequestBody ReviewsDTO reviewsDTO) {
-
-  ReviewsDTO addedLog = reviewsService.addReviewToBook(reviewsDTO);
-  System.out.println(reviewsDTO);
-  if (addedLog != null) {
-   return new ResponseEntity<>(addedLog, HttpStatus.CREATED);
-  } else {
-   return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-  }
+  reviewsService.addReviewToBook(reviewsDTO);
+  return new ResponseEntity<>(reviewsDTO, HttpStatus.CREATED);
  }
 
  @GetMapping
- public ResponseEntity<ReviewsDTO> getAllReviewsForABook(@PathVariable String isbn) {
+ public ResponseEntity<ReviewsDTO> getReviewForABook(@PathVariable String isbn) {
   ReviewsDTO reviewsDTO = reviewsService.getReviewForABook(isbn);
   if (reviewsDTO != null) {
    return new ResponseEntity<>(reviewsDTO, HttpStatus.OK);

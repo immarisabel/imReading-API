@@ -23,8 +23,7 @@ import java.sql.Date;
 @Table(name = "reviews")
 public class ReviewsEntity {
  @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- private Long id;
+ @Column(name = "isbn", nullable = false, unique = true)
  private String bookIsbn;
  private Date date;
  @Column(columnDefinition = "TEXT")
@@ -36,8 +35,5 @@ public class ReviewsEntity {
   return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
  }
 
-
- public void setId(Long id) {
-  this.id = id;
- }
 }
+

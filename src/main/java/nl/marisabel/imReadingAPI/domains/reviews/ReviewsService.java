@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ReviewsService {
 
- Long getReviewIdForBook(String isbn);
 
  ReviewsDTO addReviewToBook(ReviewsDTO reviewsDTO);
 
