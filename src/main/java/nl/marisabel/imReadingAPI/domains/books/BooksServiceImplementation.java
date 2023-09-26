@@ -97,9 +97,9 @@ public class BooksServiceImplementation implements BooksService {
  }
 
  private BooksDTO entityToDto(BooksEntity entity) {
-  List<Long> shelfIds = entity.getShelf().stream()
-          .map(ShelvesEntity::getId)
-          .collect(Collectors.toList());
+  List<String> shelfIds = entity.getShelf().stream()
+          .map(ShelvesEntity::getName)
+          .toList();
 
   return BooksDTO.builder()
           .isbn(entity.getIsbn())

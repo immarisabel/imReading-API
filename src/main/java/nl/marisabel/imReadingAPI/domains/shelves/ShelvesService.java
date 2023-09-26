@@ -15,16 +15,14 @@ import java.util.List;
 public interface ShelvesService {
  ShelvesDTO createShelf(ShelvesDTO shelf);
 
- ShelvesDTO getShelfById(Long id);
+ ShelvesDTO getShelfById(String name);
 
  List<ShelvesDTO> getAllShelves();
 
- ShelvesDTO updateShelf(Long id, ShelvesDTO updateShelf);
+ ShelvesDTO updateShelf(String name, ShelvesDTO updateShelf);
 
- boolean deleteShelf(Long id);
+ boolean deleteShelf(String name);
 
- public boolean isShelfNameDuplicate(String shelfName);
-
- ShelvesDTO getShelfByName(String shelfName);
+ boolean existsById(String name);
 }
 

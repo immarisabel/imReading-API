@@ -24,18 +24,3 @@ public class ImReadingApiApplication {
 	}
 }
 
-
-// TODO : add a api body for books under a category : /books/category/{id}
-// TODO : add the shelves body to the result of search book response
-//  	in order to pass it on full to the client to insert books
-//			{
-//  "isbn": "string",
-//  "title": "string",
-//  "author": "string",
-//  "pages": 0,
-//  "thumbnailUrl": "string",
-//  "selfLink": "string",
-//  "shelves": [
-//    0
-//  ]
-//}

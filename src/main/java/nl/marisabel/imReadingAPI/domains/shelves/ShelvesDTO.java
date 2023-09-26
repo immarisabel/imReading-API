@@ -19,6 +19,5 @@ import lombok.NoArgsConstructor;
 @Builder
 @Tag(name = "Shelves Model")
 public class ShelvesDTO {
- private Long id;
  private String name;
 }

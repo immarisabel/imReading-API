@@ -8,9 +8,8 @@
 package nl.marisabel.imReadingAPI.domains.shelves;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import nl.marisabel.imReadingAPI.exceptions.CustomResponses;
-import nl.marisabel.imReadingAPI.exceptions.DuplicateShelfException;
-import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
+import nl.marisabel.imReadingAPI.customResponse.ResponseHandler;
+import nl.marisabel.imReadingAPI.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +25,7 @@ public class ShelvesController {
  @Autowired
  private ShelvesServiceImplementation shelvesService;
 
- @ExceptionHandler(IdNotFoundException.class)
- public ResponseEntity<CustomResponses> handleBookNotFoundException(IdNotFoundException ex) {
-  CustomResponses errorResponse = new CustomResponses(801, ex.getMessage());
-  return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
- }
+
 
  @ExceptionHandler(DuplicateShelfException.class)
  public ResponseEntity<CustomResponses> handleDuplicateShelfException(DuplicateShelfException ex) {
@@ -42,7 +37,7 @@ public class ShelvesController {
  @PostMapping
  public ResponseEntity<ShelvesDTO> createShelf(@RequestBody ShelvesDTO shelf) {
   try {
-   if (shelvesService.isShelfNameDuplicate(shelf.getName())) {
+   if (shelvesService.existsById(shelf.getName())) {
     throw new DuplicateShelfException(shelf.getName());
    }
    ShelvesDTO createdShelf = shelvesService.createShelf(shelf);
@@ -52,14 +47,12 @@ public class ShelvesController {
   }
  }
 
- @GetMapping("/{id}")
- public ResponseEntity<?> getShelfById(@PathVariable Long id) {
-  ShelvesDTO shelf = shelvesService.getShelfById(id);
-
+ @GetMapping("/{name}")
+ public ResponseEntity<?> getShelfById(@PathVariable String name) {
+  ShelvesDTO shelf = shelvesService.getShelfById(name);
   if (shelf == null) {
-   throw new IdNotFoundException(id);
+   throw new ShelfNotFoundException(name);
   }
-
   return new ResponseEntity<>(shelf, HttpStatus.OK);
  }
 
@@ -69,28 +62,15 @@ public class ShelvesController {
  }
 
 
- @PutMapping("/{id}")
- public ResponseEntity<?> updateShelf(@PathVariable Long id, @RequestBody ShelvesDTO updatedShelf) {
-  if (shelvesService.isShelfNameDuplicate(updatedShelf.getName())) {
-   throw new DuplicateShelfException(updatedShelf.getName());
+ @DeleteMapping("/{name}")
+ public ResponseEntity<?> deleteShelf(@PathVariable String name) {
+  if(shelvesService.existsById(name)) {
+   shelvesService.deleteShelf(name);
+   return ResponseHandler.generateResponse("Deleted!", HttpStatus.OK, name);
   }
-
-  ShelvesDTO updated = shelvesService.updateShelf(id, updatedShelf);
-
-  if (updated == null) {
-   throw new IdNotFoundException(id);
+   else {
+    throw new ShelfNotFoundException(name);
   }
-
-  return new ResponseEntity<>(updated, HttpStatus.OK);
  }
 
-
- @DeleteMapping("/{id}")
- public ResponseEntity<?> deleteShelf(@PathVariable Long id) {
-  boolean deleted = shelvesService.deleteShelf(id);
-  if (!deleted) {
-   throw new IdNotFoundException(id);
-  }
-  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
- }
 }

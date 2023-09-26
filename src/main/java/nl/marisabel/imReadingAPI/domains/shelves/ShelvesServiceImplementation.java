@@ -7,7 +7,6 @@
 
 package nl.marisabel.imReadingAPI.domains.shelves;
 
-import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.ShelfNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,23 +33,23 @@ public class ShelvesServiceImplementation implements ShelvesService {
  }
 
  @Override
- public ShelvesDTO updateShelf(Long id, ShelvesDTO updatedShelfDTO) {
-  if (shelvesRepository.existsById(id)) {
+ public ShelvesDTO updateShelf(String name, ShelvesDTO updatedShelfDTO) {
+  if (shelvesRepository.existsById(name)) {
    ShelvesEntity updatedEntity = convertDtoToEntity(updatedShelfDTO);
-   updatedEntity.setId(id);
+   updatedEntity.setName(name);
    ShelvesEntity savedEntity = shelvesRepository.save(updatedEntity);
    return convertEntityToDto(savedEntity);
   }
-  throw new IdNotFoundException(id);
+  throw new ShelfNotFoundException(name);
  }
 
  @Override
- public ShelvesDTO getShelfById(Long id) {
-  ShelvesEntity entity = shelvesRepository.findById(id).orElse(null);
+ public ShelvesDTO getShelfById(String name) {
+  ShelvesEntity entity = shelvesRepository.findById(name).orElse(null);
   if (entity != null) {
    return convertEntityToDto(entity);
   }
-  throw new IdNotFoundException(id);
+  throw new ShelfNotFoundException(name);
  }
 
  @Override
@@ -61,19 +60,14 @@ public class ShelvesServiceImplementation implements ShelvesService {
 
 
  @Override
- public ShelvesDTO getShelfByName(String name) {
-  ShelvesEntity shelfEntity = shelvesRepository.findByName(name);
-  if (shelfEntity != null) {
-   return convertEntityToDto(shelfEntity);
-  }
-  throw new ShelfNotFoundException(name);
+ public boolean deleteShelf(String name) {
+  shelvesRepository.deleteById(name);
+  return false;
  }
 
-
  @Override
- public boolean deleteShelf(Long id) {
-  shelvesRepository.deleteById(id);
-  return false;
+ public boolean existsById(String name) {
+  return shelvesRepository.existsById(name);
  }
 
 
@@ -81,7 +75,6 @@ public class ShelvesServiceImplementation implements ShelvesService {
 
  private ShelvesEntity convertDtoToEntity(ShelvesDTO dto) {
   return ShelvesEntity.builder()
-          .id(dto.getId())
           .name(dto.getName())
           .build();
  }
@@ -89,7 +82,6 @@ public class ShelvesServiceImplementation implements ShelvesService {
 
  private ShelvesDTO convertEntityToDto(ShelvesEntity entity) {
   return ShelvesDTO.builder()
-          .id(entity.getId())
           .name(entity.getName())
           .build();
  }
@@ -99,15 +91,6 @@ public class ShelvesServiceImplementation implements ShelvesService {
           .map(this::convertEntityToDto)
           .collect(Collectors.toList());
  }
-
- public boolean isShelfNameDuplicate(String shelfName) {
-  ShelvesDTO existingShelf = getShelfByName(shelfName);
-  return existingShelf != null;
- }
-
-
-
-
 
 
 }

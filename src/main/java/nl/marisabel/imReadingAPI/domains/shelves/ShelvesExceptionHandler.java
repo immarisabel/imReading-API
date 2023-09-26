@@ -8,8 +8,6 @@
 package nl.marisabel.imReadingAPI.domains.shelves;
 
 import nl.marisabel.imReadingAPI.exceptions.CustomResponses;
-import nl.marisabel.imReadingAPI.exceptions.InvalidDateException;
-import nl.marisabel.imReadingAPI.exceptions.NoDataFoundException;
 import nl.marisabel.imReadingAPI.exceptions.ShelfNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

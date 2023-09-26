@@ -13,6 +13,7 @@ import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -46,6 +47,11 @@ public class LogsServiceImplementation implements LogsService {
   } else {
    throw new BookNotFoundException(isbn);
   }
+ }
+
+ @Override
+ public LogsDTO getLogById(Long id) {
+  return entityToDto(Objects.requireNonNull(logsRepository.findById(id).orElse(null)));
  }
 
  @Override

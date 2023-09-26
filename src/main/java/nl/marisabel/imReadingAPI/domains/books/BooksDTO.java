@@ -29,5 +29,5 @@ public class BooksDTO {
  private int pages;
  private String thumbnailUrl;
  private String selfLink;
- private List<Long> shelves;
+ private List<String> shelves;
 }

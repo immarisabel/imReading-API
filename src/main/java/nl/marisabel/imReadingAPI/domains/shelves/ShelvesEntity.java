@@ -24,20 +24,16 @@ import java.util.List;
 @Table(name = "shelves")
 public class ShelvesEntity {
  @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- private Long id;
+ @Column(name = "name", nullable = false, unique = true)
  private String name;
  @Getter
  @ManyToMany
  @JoinTable(
          name = "shelved_books",
-         joinColumns = @JoinColumn(name = "shelves_shelf_id"),
+         joinColumns = @JoinColumn(name = "shelves_shelf_name"),
          inverseJoinColumns = @JoinColumn(name = "books_isbn"))
  @ToString.Exclude
  private List<BooksEntity> books;
 
- public void setId(Long id) {
-  this.id = id;
- }
 }
 

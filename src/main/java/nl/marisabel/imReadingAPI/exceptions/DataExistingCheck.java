@@ -80,8 +80,8 @@ public class DataExistingCheck {
   return anId.isPresent();
  }
 
- public boolean doesShelfExist(Long id) {
-  Optional<ShelvesEntity> anId = shelvesRepository.findById(id);
+ public boolean doesShelfExist(String name) {
+  Optional<ShelvesEntity> anId = shelvesRepository.findById(name);
   return anId.isPresent();
  }
 
