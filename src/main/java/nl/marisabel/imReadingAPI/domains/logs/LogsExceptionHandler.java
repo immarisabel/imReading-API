@@ -8,6 +8,7 @@
 package nl.marisabel.imReadingAPI.domains.logs;
 
 import nl.marisabel.imReadingAPI.exceptions.*;
+import nl.marisabel.imReadingAPI.exceptions.books.PageTooLongException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

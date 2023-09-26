@@ -9,12 +9,14 @@ package nl.marisabel.imReadingAPI.domains.logs;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface LogsService {
 
  LogsDTO addLogToBook(LogsDTO logsDTO);
 
- LogsDTO getAllLogsForABook(String isbn);
+ List<LogsDTO> getAllLogsForABook(String isbn);
 
  public LogsDTO getLogById(Long id);
 

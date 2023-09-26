@@ -6,15 +6,16 @@
  */
 package nl.marisabel.imReadingAPI.domains.logs;
 
-import nl.marisabel.imReadingAPI.domains.readingData.ReadingDataEntity;
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.DataExistingCheck;
-import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.DataExistingCheck;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.IdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LogsServiceImplementation implements LogsService {
@@ -40,10 +41,13 @@ public class LogsServiceImplementation implements LogsService {
  }
 
  @Override
- public LogsDTO getAllLogsForABook(String isbn) {
-  LogsEntity logsEntity = logsRepository.findByIsbn(isbn);
-  if (logsEntity != null) {
-   return entityToDto(logsEntity);
+ public List<LogsDTO> getAllLogsForABook(String isbn) {
+  List<LogsEntity> logsEntity = logsRepository.findAllByIsbn(isbn);
+
+  if (!logsEntity.isEmpty()) {
+   return logsEntity.stream()
+           .map(this::entityToDto)
+           .collect(Collectors.toList());
   } else {
    throw new BookNotFoundException(isbn);
   }

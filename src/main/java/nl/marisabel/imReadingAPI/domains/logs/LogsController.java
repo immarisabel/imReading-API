@@ -9,16 +9,16 @@ package nl.marisabel.imReadingAPI.domains.logs;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
-import nl.marisabel.imReadingAPI.domains.reviews.ReviewsDTO;
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.dataValidation.IdNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Log
-@RequestMapping(value = {"${url.mapping.v1}/logs/{isbn}"})
+@RequestMapping(value = {"${url.mapping.v1}/logs/"})
 @Tag(name = "4. logs service", description = "manage the logs for each book")
 public class LogsController {
 
@@ -40,13 +40,14 @@ public class LogsController {
   }
  }
 
- @GetMapping
- public ResponseEntity<LogsDTO> getAllLogsForABookByIsbn(@PathVariable String isbn) {
-  LogsDTO logsDTO = logsService.getAllLogsForABook(isbn);
-  if (logsDTO != null) {
-   return new ResponseEntity<>(logsDTO, HttpStatus.OK);
+ @GetMapping("/{isbn}")
+ public ResponseEntity<List<LogsDTO>> getAllLogsForABookByIsbn(@PathVariable String isbn) {
+  List<LogsDTO> logs = logsService.getAllLogsForABook(isbn);
+
+  if (logs.isEmpty()) {
+   return ResponseEntity.noContent().build();
   } else {
-   return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+   return ResponseEntity.ok(logs);
   }
  }
 

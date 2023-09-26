@@ -9,11 +9,10 @@ package nl.marisabel.imReadingAPI.domains.books;
 
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesEntity;
 import nl.marisabel.imReadingAPI.domains.shelves.ShelvesRepository;
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.DuplicateBookException;
+import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.books.DuplicateBookException;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
