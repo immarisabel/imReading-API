@@ -53,8 +53,7 @@ public class SearchResultController {
     String thumbnail = volumeInfoNode.path("imageLinks").path("thumbnail").asText("No Cover");
     int pageCount = volumeInfoNode.path("pageCount").asInt(0);
     String selfLink = itemNode.path("selfLink").asText();
-
-
+    String[] shelves = new String[0];
     SearchBooksDto bookDto = new SearchBooksDto();
     bookDto.setTitle(title);
     bookDto.setAuthor(author);
@@ -62,7 +61,7 @@ public class SearchResultController {
     bookDto.setThumbnailUrl(thumbnail);
     bookDto.setPages(pageCount);
     bookDto.setSelfLink(selfLink);
-
+    bookDto.setShelves(shelves);
     books.add(bookDto);
    }
   }

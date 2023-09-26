@@ -25,6 +25,7 @@ public class SearchBooksDto {
  String thumbnailUrl;
  int pages;
  String selfLink;
+ String[] shelves;
 }
 
 

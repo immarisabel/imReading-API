@@ -10,6 +10,7 @@ package nl.marisabel.imReadingAPI.domains.readingData;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
+import nl.marisabel.imReadingAPI.exceptions.DataNotFoundByIsbnException;
 import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,23 +48,23 @@ public class ReadingDataController {
   }
  }
 
- @PutMapping("/{id}")
- public ResponseEntity<ReadingDataDTO> updateReadingData(@PathVariable Long id, @RequestBody ReadingDataDTO updatedReadingDataDTO) {
-  ReadingDataDTO updatedReadingData = readingDataService.updateReadingData(id, updatedReadingDataDTO);
+ @PutMapping("/{isbn}")
+ public ResponseEntity<ReadingDataDTO> updateReadingData(@PathVariable String isbn, @RequestBody ReadingDataDTO updatedReadingDataDTO) {
+  ReadingDataDTO updatedReadingData = readingDataService.updateReadingData(isbn, updatedReadingDataDTO);
   if (updatedReadingData != null) {
    return new ResponseEntity<>(updatedReadingData, HttpStatus.OK);
   } else {
-   throw new IdNotFoundException(id);
+   throw new DataNotFoundByIsbnException(isbn);
   }
  }
 
- @DeleteMapping("/{id}")
- public ResponseEntity<String> deleteReadingData(@PathVariable Long id) {
-  boolean deleted = readingDataService.deleteReadingData(id);
+ @DeleteMapping("/{isbn}")
+ public ResponseEntity<String> deleteReadingData(@PathVariable String isbn) {
+  boolean deleted = readingDataService.deleteReadingData(isbn);
   if (deleted) {
    return ResponseEntity.ok("Data deleted.");
   }
-  return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Deleting Failed: Reading data with ID " + id + " not found.");
+  return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Deleting Failed: Reading data for ISBN " + isbn + " not found.");
  }
 }
 

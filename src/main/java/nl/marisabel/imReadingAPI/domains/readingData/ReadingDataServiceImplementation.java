@@ -6,10 +6,7 @@
  */
 package nl.marisabel.imReadingAPI.domains.readingData;
 
-import nl.marisabel.imReadingAPI.exceptions.BookNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.DataExistingCheck;
-import nl.marisabel.imReadingAPI.exceptions.IdNotFoundException;
-import nl.marisabel.imReadingAPI.exceptions.NothingFoundWithIsbnException;
+import nl.marisabel.imReadingAPI.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,23 +37,17 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
 
  @Override
  public ReadingDataDTO getAllReadingDataForABook(String isbn) {
-  ReadingDataEntity readingDataEntity = readingDataRepository.findByIsbn(isbn);
-  if (readingDataEntity != null) {
-   return entityToDto(readingDataEntity);
+  Optional<ReadingDataEntity> readingDataEntity = readingDataRepository.findById(isbn);
+  if (readingDataEntity.isPresent()) {
+   return entityToDto(readingDataEntity.get());
   } else {
    throw new NothingFoundWithIsbnException(isbn);
   }
  }
 
- // TODO : PUT readingData puzzle: it should not allow me to modify ISBN but yes content.
- //  If wrong ISBN inserted, it should not modify it and still insert new data to the current ISBN.
- //  I want to handle ISBN in mult. vs ID for editing, in teh cases when I re-read a book.
- //  So Reading data Id1 ID2 belongs to book ISBN XXX.
- //  Current Behaviour:InvalidDataAccessApiUsageException: The given id must not be null] (when not inserting ISBN)
- //  & BookNotFoundException (when inserting ISBN)
  @Override
- public ReadingDataDTO updateReadingData(Long id, ReadingDataDTO updatedReadingDataDTO) {
-  Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(id);
+ public ReadingDataDTO updateReadingData(String isbn, ReadingDataDTO updatedReadingDataDTO) {
+  Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(isbn);
 
   if (optionalEntity.isPresent()) {
    ReadingDataEntity entity = optionalEntity.get();
@@ -70,19 +61,19 @@ public class ReadingDataServiceImplementation implements ReadingDataService {
    ReadingDataEntity updatedEntity = readingDataRepository.save(entity);
    return entityToDto(updatedEntity);
   } else {
-   throw new IdNotFoundException(id);
+   throw new DataNotFoundByIsbnException(isbn);
   }
  }
 
  @Override
- public boolean deleteReadingData(Long id) {
-  Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(id);
+ public boolean deleteReadingData(String isbn) {
+  Optional<ReadingDataEntity> optionalEntity = readingDataRepository.findById(isbn);
   if (optionalEntity.isPresent()) {
    ReadingDataEntity entity = optionalEntity.get();
    readingDataRepository.delete(entity);
    return true;
   } else {
-   throw new IdNotFoundException(id);
+   throw new DataNotFoundByIsbnException(isbn);
   }
  }
 

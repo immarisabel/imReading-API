@@ -26,7 +26,6 @@ public class DataExistingCheck {
 
  private final ReadingDataRepository readingDataRepository;
  private final BooksRepository booksRepository;
- private final ReviewsRepository reviewsRepository;
 
  private final ShelvesRepository shelvesRepository;
 
@@ -39,7 +38,6 @@ public class DataExistingCheck {
                           LogsRepository logsRepository) {
   this.readingDataRepository = readingDataRepository;
   this.booksRepository = booksRepository;
-  this.reviewsRepository = reviewsRepository;
   this.shelvesRepository = shelvesRepository;
   this.logsRepository = logsRepository;
  }
@@ -53,8 +51,8 @@ public class DataExistingCheck {
  }
 
  public boolean doesIsbnExistsInReadingData(String isbn) {
-  ReadingDataEntity book = readingDataRepository.findByIsbn(isbn);
-  return book != null;
+  Optional<ReadingDataEntity> book = readingDataRepository.findById(isbn);
+  return book.isPresent();
  }
 
  public boolean doesIsbnExistsInLogs(String isbn) {
@@ -65,20 +63,13 @@ public class DataExistingCheck {
 
  // CHECK FOR IDs
 
- public boolean doesReadingDataExists(Long id) {
-  Optional<ReadingDataEntity> anId = readingDataRepository.findById(id);
+ public boolean doesReadingDataExists(String isbn) {
+  Optional<ReadingDataEntity> anId = readingDataRepository.findById(isbn);
   return anId.isPresent();
  }
 
- public boolean doesReviewExist(Long id) {
-  Optional<ReviewsEntity> anId = reviewsRepository.findById(id);
-  return anId.isPresent();
- }
 
- public boolean doesLogExist(Long id) {
-  Optional<LogsEntity> anId = logsRepository.findById(id);
-  return anId.isPresent();
- }
+
 
  public boolean doesShelfExist(String name) {
   Optional<ShelvesEntity> anId = shelvesRepository.findById(name);

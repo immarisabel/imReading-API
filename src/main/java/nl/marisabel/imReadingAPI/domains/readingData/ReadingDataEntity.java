@@ -25,9 +25,7 @@ import java.sql.Date;
 @Table(name = "reading_data")
 public class ReadingDataEntity {
  @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- private Long id;
- @Column(unique = true)
+ @Column(name = "isbn", nullable = false, unique = true)
  private String bookIsbn;
  private Date startedDate;
  private Date finishedDate;
@@ -39,9 +37,6 @@ public class ReadingDataEntity {
  @Override
  public final int hashCode() {
   return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
- }
 
- public void setId(Long id) {
-  this.id = id;
  }
 }

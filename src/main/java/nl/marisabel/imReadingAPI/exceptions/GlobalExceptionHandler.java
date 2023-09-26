@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+ @ExceptionHandler(DataNotFoundByIsbnException.class)
+ public ResponseEntity<CustomResponses> handleDuplicateBookException(DataNotFoundByIsbnException ex) {
+  CustomResponses errorResponse = new CustomResponses(404, ex.getMessage());
+  return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+ }
  /* Global exceptions handler under code 6XX */
  @ExceptionHandler(BookNotFoundException.class)
  public ResponseEntity<CustomResponses> handleBookNotFoundException(BookNotFoundException ex) {

@@ -15,10 +15,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReadingDataRepository extends CrudRepository<ReadingDataEntity, Long> {
-
- @Query("SELECT r FROM ReadingDataEntity r WHERE r.bookIsbn = :isbn")
- ReadingDataEntity findByIsbn(@Param("isbn") String isbn);
+public interface ReadingDataRepository extends CrudRepository<ReadingDataEntity, String> {
 
 
 }

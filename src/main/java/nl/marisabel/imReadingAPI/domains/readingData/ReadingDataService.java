@@ -16,9 +16,9 @@ public interface ReadingDataService {
 
  ReadingDataDTO getAllReadingDataForABook(String isbn);
 
- ReadingDataDTO updateReadingData(Long id, ReadingDataDTO updatedReadingDataDTO);
+ ReadingDataDTO updateReadingData(String isbn, ReadingDataDTO updatedReadingDataDTO);
 
- boolean deleteReadingData(Long id);
+ boolean deleteReadingData(String isbn);
 
  ReadingDataDTO entityToDto(ReadingDataEntity entity);
 
