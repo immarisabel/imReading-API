@@ -19,6 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
  @Bean
  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
   http
@@ -29,7 +30,8 @@ public class SecurityConfig {
           .securityMatcher("/**")
           .authorizeHttpRequests(registry -> registry
                   .requestMatchers("/").permitAll()
-                  .requestMatchers("/swagger-ui*/**",  "/v3/api-docs/**", "/swagger-ui.html", "/domains/**").permitAll()
+                  .requestMatchers("/auth/login").permitAll()
+                  .requestMatchers("/swagger-ui/index.html", "/swagger-ui*/**", "/v3/api-docs/**", "/swagger-ui.html", "/domains/**").permitAll()
                   .anyRequest().authenticated());
   return http.build();
  }

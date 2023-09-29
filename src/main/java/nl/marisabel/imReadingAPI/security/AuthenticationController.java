@@ -14,17 +14,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthenticationController {
 
- @PostMapping("/login")
- public LoginResponseModel login(@RequestBody @Validated LoginRequestModel request ) {
+ private final JwtIssuer jwtIssuer;
 
-return LoginResponseModel.builder()
-        .token("token")
-        .build();
+ @PostMapping("/login")
+ public LoginResponseModel login(@RequestBody @Validated LoginRequestModel request) {
+  var token = jwtIssuer.generateToken(1L, request.getUsername(), List.of("ROLE_USER"));
+  return LoginResponseModel.builder()
+          .token(token)
+          .build();
  }
 
 }
