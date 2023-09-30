@@ -12,9 +12,12 @@ import lombok.extern.java.Log;
 import nl.marisabel.imReadingAPI.customResponse.ResponseHandler;
 import nl.marisabel.imReadingAPI.exceptions.books.BookNotFoundException;
 import nl.marisabel.imReadingAPI.exceptions.books.NoBooksFoundException;
+import nl.marisabel.imReadingAPI.security.UserPrincipal;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,11 +45,12 @@ public class BooksController {
 
 
  @PostMapping
- public ResponseEntity<BooksDTO> createBook(@RequestBody BooksDTO book) {
+ public ResponseEntity<BooksDTO> createBook(@RequestBody BooksDTO book, @AuthenticationPrincipal UserPrincipal principal) {
   BooksDTO createdBook = booksService.createBook(book);
   log.info(String.valueOf(book));
   return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
  }
+
 
  @GetMapping("/{isbn}")
  public ResponseEntity<?> getBookById(@PathVariable String isbn) {

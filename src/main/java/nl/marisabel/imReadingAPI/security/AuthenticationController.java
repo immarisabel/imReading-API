@@ -8,14 +8,15 @@
 package nl.marisabel.imReadingAPI.security;
 
 import lombok.RequiredArgsConstructor;
+import nl.marisabel.imReadingAPI.domains.books.BooksDTO;
 import nl.marisabel.imReadingAPI.security.jwt.JwtIssuer;
 import nl.marisabel.imReadingAPI.security.model.LoginRequestModel;
 import nl.marisabel.imReadingAPI.security.model.LoginResponseModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +34,11 @@ public class AuthenticationController {
           .token(token)
           .build();
  }
+
+ @GetMapping("/test")
+ public String testSecurity(@AuthenticationPrincipal UserPrincipal principal) {
+  return principal.getId() + " " + principal.getUsername() + " is authenticated";
+ }
+
 
 }
