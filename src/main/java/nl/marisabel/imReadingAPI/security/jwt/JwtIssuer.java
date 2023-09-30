@@ -5,7 +5,7 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.security;
+package nl.marisabel.imReadingAPI.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

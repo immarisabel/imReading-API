@@ -5,13 +5,14 @@
  * For more information, please see the https://opensource.org/license/mit/.
  */
 
-package nl.marisabel.imReadingAPI.security;
+package nl.marisabel.imReadingAPI.security.model;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-public class LoginResponseModel {
- private final String token;
+public class LoginRequestModel {
+ private String username;
+ private String password;
 }

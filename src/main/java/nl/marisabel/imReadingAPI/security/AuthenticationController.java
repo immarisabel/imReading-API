@@ -8,6 +8,9 @@
 package nl.marisabel.imReadingAPI.security;
 
 import lombok.RequiredArgsConstructor;
+import nl.marisabel.imReadingAPI.security.jwt.JwtIssuer;
+import nl.marisabel.imReadingAPI.security.model.LoginRequestModel;
+import nl.marisabel.imReadingAPI.security.model.LoginResponseModel;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
