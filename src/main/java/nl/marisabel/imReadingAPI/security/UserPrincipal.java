@@ -7,6 +7,7 @@
 
 package nl.marisabel.imReadingAPI.security;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +19,6 @@ import java.util.Collection;
 
 @Getter
 @Builder
-@Component
 public class UserPrincipal implements UserDetails {
 
  private final Long id;

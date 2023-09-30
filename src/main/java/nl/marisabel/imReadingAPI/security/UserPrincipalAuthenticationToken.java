@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.stereotype.Component;
 
-@Component
 public class UserPrincipalAuthenticationToken extends AbstractAuthenticationToken {
 
  private final UserPrincipal userPrincipal;
